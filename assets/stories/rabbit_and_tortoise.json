@@ -1,0 +1,210 @@
+{
+  "id": "rabbit_and_tortoise",
+  "title": "กระต่ายกับเต่า",
+  "host": {
+    "name": "พี่ช้างน้อย",
+    "avatar": "assets/images/host_elephant.jpg"
+  },
+  "pages": [
+    {
+      "pageNumber": 1,
+      "text": "ในป่ากว้างแสนสวยงาม มีกระต่ายตัวหนึ่งวิ่งเร็วที่สุด มันชอบโอ้อวดความเร็วและหัวเราะเยาะสัตว์อื่นเสมอ",
+      "chunks": ["ในป่ากว้าง", "แสนสวยงาม", "มีกระต่ายตัวหนึ่ง", "วิ่งเร็วที่สุด", "มันชอบ", "โอ้อวดความเร็ว", "และหัวเราะเยาะ", "สัตว์อื่นเสมอ"],
+      "timings": [0.0, 1.2, 2.5, 4.3, 6.0, 7.2, 8.8, 10.5],
+      "audio": "assets/audio/page1.mp3",
+      "image": "assets/images/page1.jpg",
+      "interactives": [
+        {
+          "id": "rabbit",
+          "name": "กระต่าย",
+          "x": 48,
+          "y": 48,
+          "width": 18,
+          "height": 22,
+          "sound": "assets/audio/rabbit_jump.mp3",
+          "animation": "bounce"
+        }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "text": "วันหนึ่ง กระต่ายเจอเต่าที่กำลังเดินต้วมเตี้ยม กระต่ายจึงหัวเราะเยาะว่า นี่เจ้าเต่า เดินช้าแบบนี้ เมื่อไหร่จะถึงล่ะจ๊ะ",
+      "chunks": ["วันหนึ่ง", "กระต่ายเจอเต่า", "ที่กำลังเดิน", "ต้วมเตี้ยม", "กระต่ายจึง", "หัวเราะเยาะว่า", "นี่เจ้าเต่า", "เดินช้าแบบนี้", "เมื่อไหร่จะถึง", "ล่ะจ๊ะ"],
+      "timings": [0.0, 1.0, 2.5, 3.8, 5.0, 6.0, 7.5, 8.8, 10.2, 11.8],
+      "audio": "assets/audio/page2.mp3",
+      "image": "assets/images/page2.jpg",
+      "interactives": [
+        {
+          "id": "rabbit",
+          "name": "กระต่าย",
+          "x": 20,
+          "y": 42,
+          "width": 25,
+          "height": 35,
+          "sound": "assets/audio/rabbit_laugh.mp3",
+          "animation": "shake"
+        },
+        {
+          "id": "tortoise",
+          "name": "เต่า",
+          "x": 62,
+          "y": 55,
+          "width": 22,
+          "height": 25,
+          "sound": "assets/audio/tortoise_walk.mp3",
+          "animation": "waddle"
+        }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "text": "เต่ารู้สึกไม่พอใจ จึงตอบกลับอย่างสุภาพว่า ถ้าอย่างนั้น เราลองมาวิ่งแข่งกันดูไหมล่ะ",
+      "chunks": ["เต่ารู้สึก", "ไม่พอใจ", "จึงตอบกลับ", "อย่างสุภาพว่า", "ถ้าอย่างนั้น", "เราลองมา", "วิ่งแข่งกัน", "ดูไหมล่ะ"],
+      "timings": [0.0, 1.0, 2.2, 3.2, 4.8, 6.0, 7.0, 8.2],
+      "audio": "assets/audio/page3.mp3",
+      "image": "assets/images/page3.jpg",
+      "interactives": [
+        {
+          "id": "tortoise",
+          "name": "เต่า",
+          "x": 32,
+          "y": 52,
+          "width": 22,
+          "height": 25,
+          "sound": "assets/audio/tortoise_speak.mp3",
+          "animation": "waddle"
+        },
+        {
+          "id": "rabbit",
+          "name": "กระต่าย",
+          "x": 65,
+          "y": 42,
+          "width": 20,
+          "height": 30,
+          "sound": "assets/audio/rabbit_gasp.mp3",
+          "animation": "shake"
+        }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "text": "เมื่อสัญญาณดังขึ้น กระต่ายก็พุ่งตัววิ่งนำโด่งไปไกลในพริบตา ส่วนเต่าก็ยังเดินต้วมเตี้ยมต่อไปไม่รีบร้อน",
+      "chunks": ["เมื่อสัญญาณดังขึ้น", "กระต่ายก็พุ่งตัว", "วิ่งนำโด่ง", "ไปไกลในพริบตา", "ส่วนเต่าก็ยัง", "เดินต้วมเตี้ยม", "ต่อไป", "ไม่รีบร้อน"],
+      "timings": [0.0, 1.5, 3.2, 4.5, 6.2, 7.5, 8.8, 9.8],
+      "audio": "assets/audio/page4.mp3",
+      "image": "assets/images/page4.jpg",
+      "interactives": [
+        {
+          "id": "rabbit",
+          "name": "กระต่าย",
+          "x": 30,
+          "y": 38,
+          "width": 20,
+          "height": 28,
+          "sound": "assets/audio/rabbit_run.mp3",
+          "animation": "bounce"
+        },
+        {
+          "id": "tortoise",
+          "name": "เต่า",
+          "x": 70,
+          "y": 58,
+          "width": 22,
+          "height": 25,
+          "sound": "assets/audio/tortoise_walk.mp3",
+          "animation": "waddle"
+        }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "text": "กระต่ายชะล่าใจจึงแวะนอนหลับปุ๋ยใต้ต้นไม้ใหญ่ ในขณะที่เต่าเดินต้วมเตี้ยมต่อไปเรื่อยๆ โดยไม่หยุดพักเลย",
+      "chunks": ["กระต่ายชะล่าใจ", "จึงแวะนอนหลับปุ๋ย", "ใต้ต้นไม้ใหญ่", "ในขณะที่เต่า", "เดินต้วมเตี้ยม", "ต่อไปเรื่อยๆ", "โดยไม่หยุดพักเลย"],
+      "timings": [0.0, 1.8, 3.5, 5.2, 6.8, 8.2, 9.8],
+      "audio": "assets/audio/page5.mp3",
+      "image": "assets/images/page5.jpg",
+      "interactives": [
+        {
+          "id": "rabbit",
+          "name": "กระต่ายหลับ",
+          "x": 62,
+          "y": 58,
+          "width": 20,
+          "height": 25,
+          "sound": "assets/audio/rabbit_snore.mp3",
+          "animation": "sleep-float"
+        },
+        {
+          "id": "tortoise",
+          "name": "เต่า",
+          "x": 22,
+          "y": 62,
+          "width": 22,
+          "height": 25,
+          "sound": "assets/audio/tortoise_walk.mp3",
+          "animation": "waddle"
+        }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "text": "กระต่ายสะดุ้งตื่นขึ้นมาแล้ววิ่งสุดแรงเกิด แต่ก็สายเกินไปเสียแล้ว เพราะเต่าเดินถึงเส้นชัยก่อนและเป็นผู้ชนะ",
+      "chunks": ["กระต่ายสะดุ้งตื่น", "ขึ้นมาแล้ว", "วิ่งสุดแรงเกิด", "แต่ก็สายเกินไป", "เสียแล้ว", "เพราะเต่าเดินถึง", "เส้นชัยก่อน", "และเป็นผู้ชนะ"],
+      "timings": [0.0, 1.5, 2.8, 4.5, 5.8, 7.0, 8.5, 9.8],
+      "audio": "assets/audio/page6.mp3",
+      "image": "assets/images/page6.jpg",
+      "interactives": [
+        {
+          "id": "tortoise",
+          "name": "เต่าชนะ",
+          "x": 58,
+          "y": 48,
+          "width": 25,
+          "height": 30,
+          "sound": "assets/audio/cheer.mp3",
+          "animation": "bounce"
+        },
+        {
+          "id": "rabbit",
+          "name": "กระต่ายแพ้",
+          "x": 30,
+          "y": 20,
+          "width": 18,
+          "height": 25,
+          "sound": "assets/audio/rabbit_cry.mp3",
+          "animation": "shake"
+        }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "text": "นิทานเรื่องนี้สอนให้รู้ว่า ความมุ่งมั่นพยายามและความไม่ประมาท จะนำพาเราไปสู่ความสำเร็จเสมอครับ",
+      "chunks": ["นิทานเรื่องนี้", "สอนให้รู้ว่า", "ความมุ่งมั่นพยายาม", "และความไม่ประมาท", "จะนำพาเราไป", "สู่ความสำเร็จ", "เสมอครับ"],
+      "timings": [0.0, 1.5, 2.8, 5.0, 7.0, 8.2, 9.5],
+      "audio": "assets/audio/page7.mp3",
+      "image": "assets/images/page7.jpg",
+      "interactives": [
+        {
+          "id": "tortoise",
+          "name": "เต่าเหรียญทอง",
+          "x": 28,
+          "y": 42,
+          "width": 25,
+          "height": 32,
+          "sound": "assets/audio/applause.mp3",
+          "animation": "bounce"
+        },
+        {
+          "id": "rabbit",
+          "name": "กระต่ายยินดี",
+          "x": 65,
+          "y": 38,
+          "width": 22,
+          "height": 32,
+          "sound": "assets/audio/rabbit_cheer.mp3",
+          "animation": "bounce"
+        }
+      ]
+    }
+  ]
+}

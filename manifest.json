@@ -1,0 +1,16 @@
+{
+  "name": "Kid Club",
+  "short_name": "Kid Club",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#FFF9E6",
+  "theme_color": "#3498DB",
+  "orientation": "landscape",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "1000x1000",
+      "type": "image/jpeg"
+    }
+  ]
+}

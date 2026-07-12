@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kid Club - นิทานโต้ตอบสำหรับเด็ก</title>
+  
+  <!-- SEO & Mobile Config -->
+  <meta name="description" content="นิทานโต้ตอบสุดสนุกสำหรับเด็กวัย 2-3 ปี พร้อมระบบไฮไลต์คำและตัวการ์ตูนขยับได้เมื่อจิ้ม">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Google Fonts: Mitr for headings and Kanit for reading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Kanit:300,400,500,600|Mitr:400,500,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div id="app-container">
+    
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+      <div class="welcome-card">
+        <div class="welcome-host-container">
+          <img src="assets/images/host_elephant.jpg" alt="พี่ช้างน้อย" id="welcome-host" class="bounce-loop">
+        </div>
+        <h1 class="app-title">Kid Club</h1>
+        <p class="welcome-text">มาฟังนิทานแสนสนุกกันนะ!</p>
+        <button id="btn-play-story" class="btn-primary">
+          <span class="btn-text">เริ่มเล่นเลย</span>
+          <span class="btn-icon">▶</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Story Book Screen -->
+    <div id="story-screen" class="screen">
+      <!-- Top Bar / Header -->
+      <header class="story-header">
+        <button id="btn-home" class="btn-circle-nav">🏠</button>
+        <div class="story-title-container">
+          <span id="story-title">กระต่ายกับเต่า</span>
+        </div>
+        <button id="btn-sound-toggle" class="btn-circle-nav">🔊</button>
+      </header>
+
+      <!-- Main Stage -->
+      <main class="story-stage">
+        <!-- Interactive Illustration Area -->
+        <div class="illustration-container">
+          <img id="scene-image" src="" alt="ฉากนิทาน">
+          <!-- Interactive tap overlay targets will be rendered here dynamically -->
+          <div id="interactive-overlay"></div>
+        </div>
+
+        <!-- Subtitles / Reading Area -->
+        <div class="reading-container">
+          <div id="text-display" class="story-text">
+            <!-- Words/chunks will be injected here dynamically -->
+          </div>
+        </div>
+      </main>
+
+      <!-- Navigation Footer -->
+      <footer class="story-footer">
+        <button id="btn-prev" class="btn-nav">
+          <span class="nav-arrow">◀</span> ย้อนกลับ
+        </button>
+        
+        <div class="page-indicator">
+          หน้า <span id="current-page-num">1</span>/7
+        </div>
+        
+        <button id="btn-next" class="btn-nav">
+          ถัดไป <span class="nav-arrow">▶</span>
+        </button>
+      </footer>
+    </div>
+
+  </div>
+
+  <!-- Audio Elements -->
+  <audio id="narration-audio"></audio>
+  <audio id="bg-music" loop src="https://assets.mixkit.co/active_storage/sfx/123/123-200.wav" style="display:none;"></audio> <!-- Fallback loop if needed, will keep quiet by default -->
+
+  <script src="index.js"></script>
+</body>
+</html>

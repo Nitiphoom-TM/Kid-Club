@@ -1,0 +1,425 @@
+/* ==========================================
+   CSS Design System for Kid Club (2-3 Years)
+   ========================================== */
+
+:root {
+  /* Vibrant & Harmonious Pastel Colors */
+  --bg-primary: linear-gradient(135deg, #FFF9E6 0%, #E6F5FF 100%);
+  --text-main: #35404F;
+  --text-muted: #7E8D9B;
+  
+  --color-rabbit: #FF6B8B;
+  --color-tortoise: #2ECC71;
+  --color-elephant: #3498DB;
+  --color-highlight: #FFD43B; /* Warm Golden Yellow */
+  --color-button: #FF7B93;
+  --color-button-hover: #FF617D;
+  
+  /* Layout tokens */
+  --radius-large: 28px;
+  --radius-medium: 18px;
+  --shadow-soft: 0 12px 24px rgba(0, 0, 0, 0.08);
+  --shadow-active: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Kanit', sans-serif;
+  color: var(--text-main);
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* Layout Container */
+#app-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Screens */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out;
+  padding: 16px;
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ------------------------------------------
+   1. Welcome Screen Styles
+   ------------------------------------------ */
+#welcome-screen {
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-card {
+  width: 90%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 4px solid #FFFFFF;
+  border-radius: var(--radius-large);
+  padding: 32px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-host-container {
+  width: 160px;
+  height: 160px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: #E6F5FF;
+  border: 4px solid #3498DB;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.welcome-host-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-title {
+  font-family: 'Mitr', sans-serif;
+  font-size: 3rem;
+  color: var(--color-elephant);
+  text-shadow: 2px 2px 0px #FFFFFF, 4px 4px 0px rgba(0,0,0,0.05);
+  margin-bottom: 8px;
+}
+
+.welcome-text {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* Squishy Physical Buttons */
+.btn-primary {
+  background: var(--color-button);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-medium);
+  padding: 16px 36px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 8px 0px #D84F66, 0 12px 20px rgba(216, 79, 102, 0.3);
+  transform: translateY(0);
+  transition: all 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-primary:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0px #D84F66, 0 4px 8px rgba(216, 79, 102, 0.2);
+}
+
+.btn-icon {
+  font-size: 1.3rem;
+}
+
+/* ------------------------------------------
+   2. Storybook Screen Styles
+   ------------------------------------------ */
+
+/* Header Styles */
+.story-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  margin-bottom: 12px;
+}
+
+.btn-circle-nav {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #FFFFFF;
+  background: #FFFFFF;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0px #D0D4DB, var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+
+.btn-circle-nav:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0px #D0D4DB, var(--shadow-active);
+}
+
+.story-title-container {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 8px 24px;
+  border-radius: 20px;
+  border: 2px solid #FFFFFF;
+  font-family: 'Mitr', sans-serif;
+  font-size: 1.4rem;
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Main Stage */
+.story-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+/* Illustration Container */
+.illustration-container {
+  flex: 1.3;
+  position: relative;
+  border-radius: var(--radius-large);
+  border: 5px solid #FFFFFF;
+  background: #FFFFFF;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.illustration-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tap overlays for characters */
+#interactive-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.interactive-target {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 3px dashed transparent;
+  transition: border-color 0.3s;
+  z-index: 10;
+}
+
+/* Pulse hint on characters for toddlers */
+.interactive-target::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  border: 4px solid rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+/* Subtitles/Text Area */
+.reading-container {
+  flex: 0.7;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--radius-large);
+  border: 4px solid #FFFFFF;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-soft);
+  overflow-y: auto;
+}
+
+.story-text {
+  font-size: 2.2rem;
+  line-height: 1.6;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Word Highlight animation and state */
+.story-text span {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.story-text span.active {
+  background: var(--color-highlight);
+  color: #35404F;
+  transform: scale(1.15);
+  box-shadow: 0 4px 10px rgba(255, 212, 59, 0.4);
+}
+
+/* Footer & Navigation */
+.story-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  margin-top: 12px;
+}
+
+.btn-nav {
+  flex: 1;
+  max-width: 160px;
+  height: 56px;
+  background: #FFFFFF;
+  border: 3px solid #E6E8EB;
+  border-radius: var(--radius-medium);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-main);
+  cursor: pointer;
+  box-shadow: 0 6px 0px #E1E3E6, var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.1s;
+}
+
+.btn-nav:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0px #E1E3E6, var(--shadow-active);
+}
+
+.page-indicator {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Disabled buttons */
+.btn-nav.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ------------------------------------------
+   3. Custom Character Animations (Interactive)
+   ------------------------------------------ */
+
+/* slow loop for Nong Chang on cover */
+.bounce-loop {
+  animation: bounce-loop-anim 3s infinite ease-in-out;
+}
+
+@keyframes bounce-loop-anim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Interactive Bouncy Jump */
+.animate-bounce {
+  animation: bounce-anim 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+
+@keyframes bounce-anim {
+  0%, 100% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-40px) scaleY(1.1) scaleX(0.9); }
+  70% { transform: translateY(0) scaleY(0.9) scaleX(1.1); }
+}
+
+/* Interactive Wobble / Shake */
+.animate-shake {
+  animation: shake-anim 0.5s ease-in-out both;
+}
+
+@keyframes shake-anim {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  15% { transform: translateX(-8px) rotate(-3deg); }
+  30% { transform: translateX(6px) rotate(3deg); }
+  45% { transform: translateX(-5px) rotate(-2deg); }
+  60% { transform: translateX(4px) rotate(2deg); }
+  75% { transform: translateX(-2px) rotate(-1deg); }
+}
+
+/* Interactive Waddle (Tortoise walking) */
+.animate-waddle {
+  animation: waddle-anim 0.6s ease-in-out both;
+}
+
+@keyframes waddle-anim {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg) translateY(-5px); }
+  75% { transform: rotate(8deg) translateY(-5px); }
+}
+
+/* Interactive Sleeping Snore effect */
+.animate-sleep-float {
+  animation: sleep-float-anim 2s infinite ease-in-out;
+}
+
+@keyframes sleep-float-anim {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.05); }
+}
+
+/* Responsive adjustment for tablets/desktops */
+@media (min-width: 768px) {
+  .screen {
+    padding: 24px 60px;
+  }
+  
+  .story-text {
+    font-size: 2.8rem;
+  }
+  
+  .welcome-card {
+    padding: 48px;
+  }
+}
