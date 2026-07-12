@@ -10,15 +10,18 @@ let currentPlaybackSpeed = 1.0;
 
 // DOM Elements
 const screens = document.querySelectorAll('.screen');
-const btnPlayStory = document.getElementById('btn-play-story');
-const btnSoundToggle = document.getElementById('btn-sound-toggle');
 const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
 const pageNumSpan = document.getElementById('current-page-num');
 const sceneImage = document.getElementById('scene-image');
-const textDisplay = document.getElementById('text-display');
 const interactiveOverlay = document.getElementById('interactive-overlay');
 const narrationAudio = document.getElementById('narration-audio');
+
+// Settings Modal Elements
+const settingsOverlay = document.getElementById('settings-overlay');
+const btnSettingsToggle = document.getElementById('btn-settings-toggle');
+const btnSettingsClose = document.getElementById('btn-settings-close');
+const settingsSoundBtn = document.getElementById('settings-sound-btn');
 
 // ------------------------------------------
 // 1. App Navigation & Routing
@@ -122,7 +125,10 @@ function speakThai(text, pitch = 1.3) {
 
 function toggleSound() {
   isSoundEnabled = !isSoundEnabled;
-  btnSoundToggle.innerText = isSoundEnabled ? '🔊' : '🔇';
+  if (settingsSoundBtn) {
+    settingsSoundBtn.innerText = isSoundEnabled ? 'เปิดเสียง 🔊' : 'ปิดเสียง 🔇';
+    settingsSoundBtn.classList.toggle('muted', !isSoundEnabled);
+  }
   if (!isSoundEnabled) {
     narrationAudio.muted = true;
     window.speechSynthesis.cancel();
@@ -166,15 +172,6 @@ function loadPage(index) {
   btnPrev.classList.toggle('disabled', index === 0);
   btnNext.classList.toggle('disabled', index === storyData.pages.length - 1);
   
-  // Render chunks
-  textDisplay.innerHTML = '';
-  page.chunks.forEach((chunk, i) => {
-    const span = document.createElement('span');
-    span.innerText = chunk;
-    span.dataset.index = i;
-    textDisplay.appendChild(span);
-  });
-  
   // Interactive targets
   interactiveOverlay.innerHTML = '';
   page.interactives.forEach(char => {
@@ -215,25 +212,7 @@ function nextPage() {
   }
 }
 
-function syncHighlighting() {
-  if (!storyData) return;
-  const page = storyData.pages[currentPageIndex];
-  const currentTime = narrationAudio.currentTime;
-  
-  let activeIndex = -1;
-  for (let i = 0; i < page.timings.length; i++) {
-    if (currentTime >= page.timings[i]) {
-      activeIndex = i;
-    } else {
-      break;
-    }
-  }
-  
-  const spans = textDisplay.querySelectorAll('span');
-  spans.forEach((span, i) => {
-    span.classList.toggle('active', i === activeIndex);
-  });
-}
+// Timing highlight synchronization has been disabled as per UI requests
 
 function handleNarrationEnded() {
   // Reading finished - trigger the glow and bounce alert on the Next footprint button
@@ -812,12 +791,28 @@ function setupSpeedControls() {
 }
 
 function bindMainEvents() {
-  btnSoundToggle.addEventListener('click', toggleSound);
   btnPrev.addEventListener('click', prevPage);
   btnNext.addEventListener('click', nextPage);
   
-  narrationAudio.addEventListener('timeupdate', syncHighlighting);
   narrationAudio.addEventListener('ended', handleNarrationEnded);
+  
+  // Settings Overlay Toggles
+  if (btnSettingsToggle) {
+    btnSettingsToggle.addEventListener('click', () => {
+      initAudioContext();
+      settingsOverlay.classList.add('active');
+    });
+  }
+  
+  if (btnSettingsClose) {
+    btnSettingsClose.addEventListener('click', () => {
+      settingsOverlay.classList.remove('active');
+    });
+  }
+  
+  if (settingsSoundBtn) {
+    settingsSoundBtn.addEventListener('click', toggleSound);
+  }
   
   setupSpeedControls();
 }
