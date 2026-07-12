@@ -69,8 +69,8 @@ function initNavigation() {
   document.querySelectorAll('.story-list-item').forEach(item => {
     item.addEventListener('click', () => {
       const storyId = item.dataset.story;
-      if (storyId === 'rabbit_and_tortoise') {
-        startStory();
+      if (storyId) {
+        startStory(storyId);
       }
     });
   });
@@ -136,20 +136,17 @@ function toggleSound() {
 // 3. Interactive Storybook Logic
 // ------------------------------------------
 
-async function loadStoryData() {
-  try {
-    const response = await fetch('assets/stories/rabbit_and_tortoise.json');
-    storyData = await response.json();
-  } catch (error) {
-    console.error('Failed to load story JSON config:', error);
-  }
-}
-
-function startStory() {
+async function startStory(storyId) {
   initAudioContext();
-  showScreen('story-screen');
-  currentPageIndex = 0;
-  loadPage(currentPageIndex);
+  try {
+    const response = await fetch(`assets/stories/${storyId}.json`);
+    storyData = await response.json();
+    showScreen('story-screen');
+    currentPageIndex = 0;
+    loadPage(currentPageIndex);
+  } catch (error) {
+    console.error(`Failed to load story JSON config for ${storyId}:`, error);
+  }
 }
 
 function loadPage(index) {
@@ -825,8 +822,7 @@ function bindMainEvents() {
   setupSpeedControls();
 }
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   bindMainEvents();
-  await loadStoryData();
 });
