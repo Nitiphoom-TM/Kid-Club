@@ -111,16 +111,46 @@ function initAudioContext() {
   }
 }
 
-// Speak text using Web Speech API in Thai
+const SOUND_MAP = {
+  "เก่งมากครับ!": "game_success",
+  "ลองใหม่นะจ๊ะ": "game_try_again",
+  "ลูกโป่งนี้สีอะไรเอ่ย จิ้มใส่กล่องสีให้ถูกนะจ๊ะ": "game_sorter_intro",
+  "แมว": "animal_cat",
+  "สุนัข": "animal_dog",
+  "กระต่าย": "animal_bunny",
+  "สิงโต": "animal_lion",
+  "วัว": "animal_cow",
+  "หมู": "animal_pig",
+  "แกะ": "animal_sheep",
+  "ช้าง": "animal_elephant",
+  "ลิง": "animal_monkey",
+  "ไก่": "animal_chicken",
+  "กบ": "animal_frog",
+  "เป็ด": "animal_duck"
+};
+
+function speakLearningWord(soundKey) {
+  if (!isSoundEnabled) return;
+  const audio = new Audio(`assets/audio/learning/${soundKey}.mp3`);
+  audio.play().catch(e => console.log('Speech playback blocked:', e));
+}
+
+// Speak text using Microsoft Edge Neural TTS or Web Speech API fallback
 function speakThai(text, pitch = 1.3) {
   if (!isSoundEnabled) return;
-  window.speechSynthesis.cancel(); // Stop any active speech
   
+  const mappedSound = SOUND_MAP[text];
+  if (mappedSound) {
+    speakLearningWord(mappedSound);
+    return;
+  }
+  
+  // Fallback to browser Web Speech API
+  window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'th-TH';
-  utterance.pitch = pitch; // High pitched and cute
-  utterance.rate = 0.95;   // Friendly speed
-  
+  utterance.pitch = pitch;
+  utterance.rate = 0.95;
   window.speechSynthesis.speak(utterance);
 }
 
@@ -242,51 +272,188 @@ function triggerCharacter(char) {
 
 // ------------------------------------------
 // 4. Learning World Grids Data & Logic
-// ------------------------------------------
-
 const LEARNING_DATA = {
   thai: [
-    { key: "ก", val: "กอ ไก่" }, { key: "ข", val: "ขอ ไข่" }, { key: "ฃ", val: "ขอ ขวด" }, { key: "ค", val: "คอ ควาย" },
-    { key: "ฅ", val: "คอ คน" }, { key: "ฆ", val: "คอ ระฆัง" }, { key: "ง", val: "งอ งู" }, { key: "จ", val: "จอ จาน" },
-    { key: "ฉ", val: "ฉอ ฉิ่ง" }, { key: "ช", val: "ชอ ช้าง" }, { key: "ซ", val: "ซอ โซ่" }, { key: "ฌ", val: "ฌอ เฌอ" },
-    { key: "ญ", val: "ญอ หญิง" }, { key: "ฎ", val: "ดอ ชฎา" }, { key: "ฏ", val: "ตอ ปฏัก" }, { key: "ฐ", val: "ถอ ฐาน" },
-    { key: "ฑ", val: "ทอ มณโฑ" }, { key: "ฒ", val: "ทอ ผู้เฒ่า" }, { key: "ณ", val: "ณอ เณร" }, { key: "ด", val: "ดอ เด็ก" },
-    { key: "ต", val: "ตอ เต่า" }, { key: "ถ", val: "ถอ ถุง" }, { key: "ท", val: "ทอ ทหาร" }, { key: "ธ", val: "ธอ ธง" },
-    { key: "น", val: "นอ หนู" }, { key: "บ", val: "บอ ใบไม้" }, { key: "ป", val: "ปอ ปลา" }, { key: "ผ", val: "ผอ ผึ้ง" },
-    { key: "ฝ", val: "ฝอ ฝา" }, { key: "พ", val: "พอ พาน" }, { key: "ฟ", val: "ฟอ ฟัน" }, { key: "ภ", val: "พอ สำเภา" },
-    { key: "ม", val: "มอ ม้า" }, { key: "ย", val: "ยอ ยักษ์" }, { key: "ร", val: "รอ เรือ" }, { key: "ล", val: "ลอ ลิง" },
-    { key: "ว", val: "วอ แหวน" }, { key: "ศ", val: "สอ ศาลา" }, { key: "ษ", val: "สอ ฤาษี" }, { key: "ส", val: "สอ เสือ" },
-    { key: "ห", val: "หอ หีบ" }, { key: "ฬ", val: "ลอ จุฬา" }, { key: "อ", val: "ออ อ่าง" }, { key: "ฮ", val: "ฮอ นกฮูก" }
+    { key: "ก", val: "กอ ไก่", sound: "thai_0" },
+    { key: "ข", val: "ขอ ไข่", sound: "thai_1" },
+    { key: "ฃ", val: "ขอ ขวด", sound: "thai_2" },
+    { key: "ค", val: "คอ ควาย", sound: "thai_3" },
+    { key: "ฅ", val: "คอ คน", sound: "thai_4" },
+    { key: "ฆ", val: "คอ ระฆัง", sound: "thai_5" },
+    { key: "ง", val: "งอ งู", sound: "thai_6" },
+    { key: "จ", val: "จอ จาน", sound: "thai_7" },
+    { key: "ฉ", val: "ฉอ ฉิ่ง", sound: "thai_8" },
+    { key: "ช", val: "ชอ ช้าง", sound: "thai_9" },
+    { key: "ซ", val: "ซอ โซ่", sound: "thai_10" },
+    { key: "ฌ", val: "ฌอ เฌอ", sound: "thai_11" },
+    { key: "ญ", val: "ญอ หญิง", sound: "thai_12" },
+    { key: "ฎ", val: "ดอ ชฎา", sound: "thai_13" },
+    { key: "ฏ", val: "ตอ ปฏัก", sound: "thai_14" },
+    { key: "ฐ", val: "ถอ ฐาน", sound: "thai_15" },
+    { key: "ฑ", val: "ทอ มณโฑ", sound: "thai_16" },
+    { key: "ฒ", val: "ทอ ผู้เฒ่า", sound: "thai_17" },
+    { key: "ณ", val: "ณอ เณร", sound: "thai_18" },
+    { key: "ด", val: "ดอ เด็ก", sound: "thai_19" },
+    { key: "ต", val: "ตอ เต่า", sound: "thai_20" },
+    { key: "ถ", val: "ถอ ถุง", sound: "thai_21" },
+    { key: "ท", val: "ทอ ทหาร", sound: "thai_22" },
+    { key: "ธ", val: "ธอ ธง", sound: "thai_23" },
+    { key: "น", val: "นอ หนู", sound: "thai_24" },
+    { key: "บ", val: "บอ ใบไม้", sound: "thai_25" },
+    { key: "ป", val: "ปอ ปลา", sound: "thai_26" },
+    { key: "ผ", val: "ผอ ผึ้ง", sound: "thai_27" },
+    { key: "ฝ", val: "ฝอ ฝา", sound: "thai_28" },
+    { key: "พ", val: "พอ พาน", sound: "thai_29" },
+    { key: "ฟ", val: "ฟอ ฟัน", sound: "thai_30" },
+    { key: "ภ", val: "พอ สำเภา", sound: "thai_31" },
+    { key: "ม", val: "มอ ม้า", sound: "thai_32" },
+    { key: "ย", val: "ยอ ยักษ์", sound: "thai_33" },
+    { key: "ร", val: "รอ เรือ", sound: "thai_34" },
+    { key: "ล", val: "ลอ ลิง", sound: "thai_35" },
+    { key: "ว", val: "วอ แหวน", sound: "thai_36" },
+    { key: "ศ", val: "สอ ศาลา", sound: "thai_37" },
+    { key: "ษ", val: "สอ ฤาษี", sound: "thai_38" },
+    { key: "ส", val: "สอ เสือ", sound: "thai_39" },
+    { key: "ห", val: "หอ หีบ", sound: "thai_40" },
+    { key: "ฬ", val: "ลอ จุฬา", sound: "thai_41" },
+    { key: "อ", val: "ออ อ่าง", sound: "thai_42" },
+    { key: "ฮ", val: "ฮอ นกฮูก", sound: "thai_43" }
   ],
   english: [
-    { key: "A", val: "เอ แแอปเปิ้ล" }, { key: "B", val: "บี บานาน่า" }, { key: "C", val: "ซี แคท" }, { key: "D", val: "ดี ด็อก" },
-    { key: "E", val: "อี เอลเลเฟ่นท์" }, { key: "F", val: "เอฟ ฟิช" }, { key: "G", val: "จี เกรป" }, { key: "H", val: "เอช ฮอร์ส" },
-    { key: "I", val: "ไอ ไอศกรีม" }, { key: "J", val: "เจ เจลลี่" }, { key: "K", val: "เค ไคท์" }, { key: "L", val: "แอล ไลออน" },
-    { key: "M", val: "เอ็ม มังกี้" }, { key: "N", val: "เอ็น เนสท์" }, { key: "O", val: "โอ ออเรนจ์" }, { key: "P", val: "พี แพนด้า" },
-    { key: "Q", val: "คิว ควีน" }, { key: "R", val: "อาร์ แรบบิท" }, { key: "S", val: "เอส ซัน" }, { key: "T", val: "ที ไทเกอร์" },
-    { key: "U", val: "ยู อัมเบรลล่า" }, { key: "V", val: "วี แวน" }, { key: "W", val: "ดับเบิ้ลยู วอเตอร์" }, { key: "X", val: "เอ็กซ์ ไซโลโฟน" },
-    { key: "Y", val: "วาย โยโย่" }, { key: "Z", val: "ซี แซบรา" }
+    { key: "A", val: "เอ แอปเปิ้ล", sound: "eng_0" },
+    { key: "B", val: "บี บานาน่า", sound: "eng_1" },
+    { key: "C", val: "ซี แคท", sound: "eng_2" },
+    { key: "D", val: "ดี ด็อก", sound: "eng_3" },
+    { key: "E", val: "อี เอลเลเฟ่นท์", sound: "eng_4" },
+    { key: "F", val: "เอฟ ฟิช", sound: "eng_5" },
+    { key: "G", val: "จี เกรป", sound: "eng_6" },
+    { key: "H", val: "เอช ฮอร์ส", sound: "eng_7" },
+    { key: "I", val: "ไอ ไอศกรีม", sound: "eng_8" },
+    { key: "J", val: "เจ เจลลี่", sound: "eng_9" },
+    { key: "K", val: "เค ไคท์", sound: "eng_10" },
+    { key: "L", val: "แอล ไลออน", sound: "eng_11" },
+    { key: "M", val: "เอ็ม มังกี้", sound: "eng_12" },
+    { key: "N", val: "เอ็น เนสท์", sound: "eng_13" },
+    { key: "O", val: "โอ ออเรนจ์", sound: "eng_14" },
+    { key: "P", val: "พี แพนด้า", sound: "eng_15" },
+    { key: "Q", val: "คิว ควีน", sound: "eng_16" },
+    { key: "R", val: "อาร์ แรบบิท", sound: "eng_17" },
+    { key: "S", val: "เอส ซัน", sound: "eng_18" },
+    { key: "T", val: "ที ไทเกอร์", sound: "eng_19" },
+    { key: "U", val: "ยู อัมเบรลล่า", sound: "eng_20" },
+    { key: "V", val: "วี แวน", sound: "eng_21" },
+    { key: "W", val: "ดับเบิ้ลยู วอเตอร์", sound: "eng_22" },
+    { key: "X", val: "เอ็กซ์ ไไซโลโฟน", sound: "eng_23" },
+    { key: "Y", val: "วาย โยโย่", sound: "eng_24" },
+    { key: "Z", val: "ซี แซบรา", sound: "eng_25" }
   ],
   colors: [
-    { key: "#FF3366", val: "สีแดง" }, { key: "#FFCC00", val: "สีเหลือง" }, { key: "#3399FF", val: "สีน้ำเงิน" },
-    { key: "#2ECC71", val: "สีเขียว" }, { key: "#FF7F27", val: "สีส้ม" }, { key: "#9B5DE5", val: "สีม่วง" },
-    { key: "#FF82C5", val: "สีชมพู" }, { key: "#1E1E1E", val: "สีดำ" }
+    { key: "#FF3366", val: "สีแดง", sound: "color_red" },
+    { key: "#FFCC00", val: "สีเหลือง", sound: "color_yellow" },
+    { key: "#3399FF", val: "สีน้ำเงิน", sound: "color_blue" },
+    { key: "#2ECC71", val: "สีเขียว", sound: "color_green" },
+    { key: "#FF7F27", val: "สีส้ม", sound: "color_orange" },
+    { key: "#9B5DE5", val: "สีม่วง", sound: "color_purple" },
+    { key: "#FF82C5", val: "สีชมพู", sound: "color_pink" },
+    { key: "#1E1E1E", val: "สีดำ", sound: "color_black" },
+    { key: "#FFFFFF", val: "สีขาว", sound: "color_white" },
+    { key: "#8B5A2B", val: "สีน้ำตาล", sound: "color_brown" },
+    { key: "#95A5A6", val: "สีเทา", sound: "color_grey" },
+    { key: "#00FFFF", val: "สีฟ้า", sound: "color_cyan" }
   ],
   fruits: [
-    { key: "🍎", val: "แอปเปิ้ล" }, { key: "🍌", val: "กล้วย" }, { key: "🍊", val: "ส้ม" }, { key: "🍇", val: "องุ่น" },
-    { key: "🍓", val: "สตรอว์เบอร์รี" }, { key: "🍉", val: "แตงโม" }, { key: "🥭", val: "มะม่วง" }, { key: "🍍", val: "สับปะรด" }
+    { key: "🍎", val: "แอปเปิ้ล", sound: "fruit_apple" },
+    { key: "🍌", val: "กล้วย", sound: "fruit_banana" },
+    { key: "🍊", val: "ส้ม", sound: "fruit_orange" },
+    { key: "🍇", val: "องุ่น", sound: "fruit_grape" },
+    { key: "🍓", val: "สตรอว์เบอร์รี", sound: "fruit_strawberry" },
+    { key: "🍉", val: "แตงโม", sound: "fruit_watermelon" },
+    { key: "🥭", val: "มะม่วง", sound: "fruit_mango" },
+    { key: "🍍", val: "สับปะรด", sound: "fruit_pineapple" },
+    { key: "🥥", val: "มะพร้าว", sound: "fruit_coconut" },
+    { key: "🍈", val: "แคนตาลูป", sound: "fruit_cantaloupe" },
+    { key: "🥑", val: "อะโวคาโด", sound: "fruit_avocado" },
+    { key: "🍒", val: "เชอร์รี", sound: "fruit_cherry" }
   ],
   vehicles: [
-    { key: "🚗", val: "รถยนต์" }, { key: "🚓", val: "รถตำรวจ" }, { key: "🚑", val: "รถพยาบาล" }, { key: "🚒", val: "รถดับเพลิง" },
-    { key: "🚂", val: "รถไฟ" }, { key: "✈️", val: "เครื่องบิน" }, { key: "🚲", val: "จักรยาน" }, { key: "🚜", val: "รถไถ" }
+    { key: "🚗", val: "รถยนต์", sound: "vehicle_car" },
+    { key: "🚓", val: "รถตำรวจ", sound: "vehicle_police" },
+    { key: "🚑", val: "รถพยาบาล", sound: "vehicle_ambulance" },
+    { key: "🚒", val: "รถดับเพลิง", sound: "vehicle_fire" },
+    { key: "🚂", val: "รถไฟ", sound: "vehicle_train" },
+    { key: "✈️", val: "เครื่องบิน", sound: "vehicle_plane" },
+    { key: "🚲", val: "จักรยาน", sound: "vehicle_bike" },
+    { key: "🚜", val: "รถไถ", sound: "vehicle_tractor" },
+    { key: "🚢", val: "เรือ", sound: "vehicle_ship" },
+    { key: "🏍️", val: "รถจักรยานยนต์", sound: "vehicle_motorcycle" },
+    { key: "🚁", val: "เฮลิคอปเตอร์", sound: "vehicle_helicopter" },
+    { key: "🚀", val: "จรวด", sound: "vehicle_rocket" }
   ],
   home: [
-    { key: "🛏️", val: "เตียงนอน" }, { key: "🪑", val: "เก้าอี้" }, { key: "🍽️", val: "จานข้าว" }, { key: "⏰", val: "นาฬิกา" },
-    { key: "☎️", val: "โทรศัพท์" }, { key: "🔑", val: "กุญแจ" }, { key: "🥛", val: "แก้วน้ำ" }, { key: "☂️", val: "ร่ม" }
+    { key: "🛏️", val: "เตียงนอน", sound: "home_bed" },
+    { key: "🪑", val: "เก้าอี้", sound: "home_chair" },
+    { key: "🍽️", val: "จานข้าว", sound: "home_plate" },
+    { key: "⏰", val: "นาฬิกา", sound: "home_clock" },
+    { key: "☎️", val: "โทรศัพท์", sound: "home_phone" },
+    { key: "🔑", val: "กุญแจ", sound: "home_key" },
+    { key: "🥛", val: "แก้วน้ำ", sound: "home_glass" },
+    { key: "☂️", val: "ร่ม", sound: "home_umbrella" },
+    { key: "💡", val: "หลอดไฟ", sound: "home_bulb" },
+    { key: "🛋️", val: "โซฟา", sound: "home_sofa" },
+    { key: "🪞", val: "กระจก", sound: "home_mirror" },
+    { key: "🚪", val: "ประตู", sound: "home_door" }
   ],
   careers: [
-    { key: "🩺", val: "คุณหมอ" }, { key: "🍎", val: "คุณครู" }, { key: "👮", val: "คุณตำรวจ" }, { key: "👨‍🚒", val: "นักดับเพลิง" },
-    { key: "🍳", val: "พ่อครัว" }, { key: "👨‍🌾", val: "ชาวนา" }, { key: "👩‍✈️", val: "นักบิน" }, { key: "👨‍🚀", val: "นักบินอวกาศ" }
+    { key: "🩺", val: "คุณหมอ", sound: "career_doctor" },
+    { key: "👩‍🏫", val: "คุณครู", sound: "career_teacher" },
+    { key: "👮", val: "คุณตำรวจ", sound: "career_police" },
+    { key: "👨‍🚒", val: "นักดับเพลิง", sound: "career_firefighter" },
+    { key: "🍳", val: "พ่อครัว", sound: "career_chef" },
+    { key: "👨‍🌾", val: "ชาวนา", sound: "career_farmer" },
+    { key: "👩‍✈️", val: "นักบิน", sound: "career_pilot" },
+    { key: "👨‍🚀", val: "นักบินอวกาศ", sound: "career_astronaut" },
+    { key: "🎨", val: "ศิลปิน", sound: "career_artist" },
+    { key: "🦷", val: "หมอฟัน", sound: "career_dentist" },
+    { key: "💂", val: "ทหาร", sound: "career_soldier" },
+    { key: "👩‍🔬", val: "นักวิทยาศาสตร์", sound: "career_scientist" }
+  ],
+  animals: [
+    { key: "🐱", val: "แมว", sound: "animal_cat" },
+    { key: "🐶", val: "สุนัข", sound: "animal_dog" },
+    { key: "🐰", val: "กระต่าย", sound: "animal_bunny" },
+    { key: "🦁", val: "สิงโต", sound: "animal_lion" },
+    { key: "🐮", val: "วัว", sound: "animal_cow" },
+    { key: "🐷", val: "หมู", sound: "animal_pig" },
+    { key: "🐑", val: "แกะ", sound: "animal_sheep" },
+    { key: "🐘", val: "ช้าง", sound: "animal_elephant" },
+    { key: "🐵", val: "ลิง", sound: "animal_monkey" },
+    { key: "🐔", val: "ไก่", sound: "animal_chicken" },
+    { key: "🐸", val: "กบ", sound: "animal_frog" },
+    { key: "🦆", val: "เป็ด", sound: "animal_duck" }
+  ],
+  shapes: [
+    { key: "🔴", val: "วงกลม", sound: "shape_circle" },
+    { key: "🔺", val: "สามเหลี่ยม", sound: "shape_triangle" },
+    { key: "🟩", val: "สี่เหลี่ยม", sound: "shape_square" },
+    { key: "⭐️", val: "ดาว", sound: "shape_star" },
+    { key: "🧡", val: "รูปหัวใจ", sound: "shape_heart" },
+    { key: "🔷", val: "สี่เหลี่ยมข้าวหลามตัด", sound: "shape_diamond" },
+    { key: "🌙", val: "พระจันทร์เสี้ยว", sound: "shape_crescent" },
+    { key: "🥚", val: "วงรี", sound: "shape_oval" }
+  ],
+  foods: [
+    { key: "🍔", val: "แฮมเบอร์เกอร์", sound: "food_hamburger" },
+    { key: "🍕", val: "พิซซ่า", sound: "food_pizza" },
+    { key: "🍦", val: "ไอศกรีม", sound: "food_icecream" },
+    { key: "🍩", val: "โดนัท", sound: "food_donut" },
+    { key: "🍰", val: "เค้ก", sound: "food_cake" },
+    { key: "🍿", val: "ป๊อปคอร์น", sound: "food_popcorn" },
+    { key: "🥛", val: "นม", sound: "food_milk" },
+    { key: "🥚", val: "ไข่", sound: "food_egg" },
+    { key: "🍞", val: "ขนมปัง", sound: "food_bread" },
+    { key: "🍫", val: "ช็อกโกแลต", sound: "food_chocolate" },
+    { key: "🍪", val: "คุกกี้", sound: "food_cookie" },
+    { key: "🍜", val: "บะหมี่", sound: "food_noodle" }
   ]
 };
 
@@ -328,7 +495,7 @@ function loadLearningGrid(category, label) {
       
       // Sound effect pops
       synthJump();
-      speakThai(item.val);
+      speakLearningWord(item.sound);
     });
     
     gridContainer.appendChild(card);
@@ -352,6 +519,8 @@ function loadGame(gameKey, label) {
     initAnimalSoundboard(gameCanvas);
   } else if (gameKey === 'sorter') {
     initColorSorter(gameCanvas);
+  } else if (gameKey === 'guess_sound') {
+    initGuessSoundGame(gameCanvas);
   }
   
   showScreen('game-play-screen');
@@ -789,6 +958,144 @@ function setupSpeedControls() {
       narrationAudio.playbackRate = speed;
     });
   });
+}
+
+/* 🗣️ Game 3: Guess the Word from Sound */
+function initGuessSoundGame(container) {
+  let score = 0;
+  let targetItem = null;
+  let options = [];
+  
+  const wrapper = document.createElement('div');
+  wrapper.className = 'guess-game-container';
+  
+  // Score indicator
+  const scoreBadge = document.createElement('div');
+  scoreBadge.className = 'score-badge';
+  scoreBadge.innerText = `คะแนน: ${score}`;
+  wrapper.appendChild(scoreBadge);
+  
+  // Speaker section
+  const speakerContainer = document.createElement('div');
+  speakerContainer.className = 'speaker-container';
+  
+  const speakerBtn = document.createElement('button');
+  speakerBtn.className = 'btn-speaker-large';
+  speakerBtn.innerText = '🔊';
+  speakerBtn.addEventListener('click', () => {
+    if (targetItem) {
+      speakLearningWord(targetItem.sound);
+    }
+  });
+  
+  const speakerLabel = document.createElement('div');
+  speakerLabel.className = 'speaker-label';
+  speakerLabel.innerText = 'กดเพื่อฟังเสียงอีกครั้ง 🐰';
+  
+  speakerContainer.appendChild(speakerBtn);
+  speakerContainer.appendChild(speakerLabel);
+  wrapper.appendChild(speakerContainer);
+  
+  // Options Grid
+  const optionsGrid = document.createElement('div');
+  optionsGrid.className = 'guess-options-grid';
+  wrapper.appendChild(optionsGrid);
+  
+  container.appendChild(wrapper);
+  
+  // Pick items pool (items that have clear emoji/key and name)
+  const poolCategories = ['fruits', 'vehicles', 'home', 'careers', 'animals', 'shapes', 'foods'];
+  const pool = [];
+  poolCategories.forEach(cat => {
+    LEARNING_DATA[cat].forEach(item => {
+      pool.push({ ...item, category: cat });
+    });
+  });
+  
+  function nextQuestion() {
+    optionsGrid.innerHTML = '';
+    
+    // Pick 1 target item
+    targetItem = pool[Math.floor(Math.random() * pool.length)];
+    
+    // Pick 3 distractors from the same or different categories
+    const distractors = [];
+    while (distractors.length < 3) {
+      const item = pool[Math.floor(Math.random() * pool.length)];
+      if (item.sound !== targetItem.sound && !distractors.some(d => d.sound === item.sound)) {
+        distractors.push(item);
+      }
+    }
+    
+    // Combine and shuffle
+    options = [targetItem, ...distractors];
+    options.sort(() => Math.random() - 0.5);
+    
+    // Render option buttons
+    options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'btn-guess-option';
+      
+      const emoji = document.createElement('span');
+      emoji.className = 'guess-emoji';
+      
+      // Handle color rendering
+      if (opt.category === 'colors') {
+        emoji.innerHTML = `<div style="background-color: ${opt.key}; width: 45px; height: 45px; border-radius: 50%; border: 3px solid #E2E8F0;"></div>`;
+      } else {
+        emoji.innerText = opt.key;
+      }
+      
+      const label = document.createElement('span');
+      label.innerText = opt.val;
+      
+      btn.appendChild(emoji);
+      btn.appendChild(label);
+      
+      btn.addEventListener('click', () => {
+        // Disable options during animation
+        optionsGrid.querySelectorAll('.btn-guess-option').forEach(b => b.style.pointerEvents = 'none');
+        
+        if (opt.sound === targetItem.sound) {
+          // Correct!
+          btn.classList.add('correct');
+          score++;
+          scoreBadge.innerText = `คะแนน: ${score}`;
+          playSynthSound('applause');
+          speakThai("เก่งมากครับ!");
+          
+          setTimeout(() => {
+            nextQuestion();
+          }, 1500);
+        } else {
+          // Incorrect
+          btn.classList.add('incorrect');
+          playSynthSound('rabbit_gasp');
+          speakThai("ลองใหม่นะจ๊ะ");
+          
+          setTimeout(() => {
+            btn.classList.remove('incorrect');
+            optionsGrid.querySelectorAll('.btn-guess-option').forEach(b => b.style.pointerEvents = 'auto');
+          }, 1000);
+        }
+      });
+      
+      optionsGrid.appendChild(btn);
+    });
+    
+    // Play target sound automatically
+    setTimeout(() => {
+      speakLearningWord(targetItem.sound);
+    }, 300);
+  }
+  
+  // Play introduction
+  const introAudio = new Audio('assets/audio/learning/game_guess_intro.mp3');
+  introAudio.play().catch(e => console.log('Intro blocked:', e));
+  
+  setTimeout(() => {
+    nextQuestion();
+  }, 2200);
 }
 
 function bindMainEvents() {
