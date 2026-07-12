@@ -22,6 +22,7 @@ const settingsOverlay = document.getElementById('settings-overlay');
 const btnSettingsToggle = document.getElementById('btn-settings-toggle');
 const btnSettingsClose = document.getElementById('btn-settings-close');
 const settingsSoundBtn = document.getElementById('settings-sound-btn');
+const btnReplay = document.getElementById('btn-replay');
 
 // ------------------------------------------
 // 1. App Navigation & Routing
@@ -812,6 +813,14 @@ function bindMainEvents() {
   
   if (settingsSoundBtn) {
     settingsSoundBtn.addEventListener('click', toggleSound);
+  }
+
+  if (btnReplay) {
+    btnReplay.addEventListener('click', () => {
+      initAudioContext();
+      narrationAudio.currentTime = 0;
+      narrationAudio.play().catch(e => console.log('Replay blocked:', e));
+    });
   }
   
   setupSpeedControls();
