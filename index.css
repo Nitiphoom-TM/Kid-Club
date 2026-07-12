@@ -307,9 +307,6 @@ body, html {
   box-shadow: var(--shadow-soft);
 }
 
-/* ------------------------------------------
-   4. Story Player Header speed controls
-   ------------------------------------------ */
 .speed-control-container {
   display: flex;
   background: rgba(255, 255, 255, 0.85);
@@ -323,8 +320,8 @@ body, html {
 .btn-speed {
   border: none;
   background: transparent;
-  padding: 6px 16px;
-  font-size: 1.05rem;
+  padding: 6px 10px;
+  font-size: 0.9rem;
   font-weight: 500;
   border-radius: 20px;
   cursor: pointer;
