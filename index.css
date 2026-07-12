@@ -1,28 +1,25 @@
 /* ==========================================
-   CSS Design System for Kid Club (2-3 Years)
+   Kid Club Expanded Design System (PWA Hub)
    ========================================== */
 
 :root {
-  /* Vibrant & Harmonious Pastel Colors */
-  --bg-primary: linear-gradient(135deg, #FFF9E6 0%, #E6F5FF 100%);
-  --text-main: #35404F;
-  --text-muted: #7E8D9B;
+  --bg-primary: linear-gradient(135deg, #FFFDF0 0%, #EBF7FF 100%);
+  --text-main: #3C4A5A;
+  --text-muted: #8E9EA5;
   
-  --color-rabbit: #FF6B8B;
-  --color-tortoise: #2ECC71;
-  --color-elephant: #3498DB;
-  --color-highlight: #FFD43B; /* Warm Golden Yellow */
-  --color-button: #FF7B93;
-  --color-button-hover: #FF617D;
+  --color-learning: #9B5DE5;
+  --color-stories: #F15BB5;
+  --color-games: #00F5D4;
+  --color-highlight: #FFBE0B;
   
-  /* Layout tokens */
   --radius-large: 28px;
   --radius-medium: 18px;
-  --shadow-soft: 0 12px 24px rgba(0, 0, 0, 0.08);
-  --shadow-active: 0 4px 8px rgba(0, 0, 0, 0.05);
+  
+  --shadow-soft: 0 12px 24px rgba(60, 74, 90, 0.08);
+  --shadow-button: 0 8px 0px rgba(0, 0, 0, 0.1);
 }
 
-/* Global Reset */
+/* Base resets & layout */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -40,7 +37,6 @@ body, html {
   overflow: hidden;
 }
 
-/* Layout Container */
 #app-container {
   position: relative;
   width: 100%;
@@ -50,7 +46,7 @@ body, html {
   align-items: center;
 }
 
-/* Screens */
+/* Screen manager */
 .screen {
   position: absolute;
   top: 0;
@@ -61,8 +57,8 @@ body, html {
   flex-direction: column;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease-in-out;
-  padding: 16px;
+  transition: opacity 0.35s ease-in-out;
+  padding: 16px 24px;
 }
 
 .screen.active {
@@ -70,110 +66,77 @@ body, html {
   pointer-events: auto;
 }
 
-/* ------------------------------------------
-   1. Welcome Screen Styles
-   ------------------------------------------ */
-#welcome-screen {
-  justify-content: center;
-  align-items: center;
-}
-
-.welcome-card {
-  width: 90%;
-  max-width: 480px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 4px solid #FFFFFF;
-  border-radius: var(--radius-large);
-  padding: 32px;
+/* Headers */
+.hub-header {
   text-align: center;
-  box-shadow: var(--shadow-soft);
+  margin-top: 10px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.welcome-host-container {
-  width: 160px;
-  height: 160px;
-  margin-bottom: 16px;
-  border-radius: 50%;
-  background: #E6F5FF;
-  border: 4px solid #3498DB;
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-}
-
-.welcome-host-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.app-title {
-  font-family: 'Mitr', sans-serif;
-  font-size: 3rem;
-  color: var(--color-elephant);
-  text-shadow: 2px 2px 0px #FFFFFF, 4px 4px 0px rgba(0,0,0,0.05);
-  margin-bottom: 8px;
-}
-
-.welcome-text {
-  font-size: 1.3rem;
-  color: var(--text-muted);
-  margin-bottom: 24px;
-}
-
-/* Squishy Physical Buttons */
-.btn-primary {
-  background: var(--color-button);
-  color: #FFFFFF;
-  border: none;
-  border-radius: var(--radius-medium);
-  padding: 16px 36px;
-  font-size: 1.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 8px 0px #D84F66, 0 12px 20px rgba(216, 79, 102, 0.3);
-  transform: translateY(0);
-  transition: all 0.1s ease;
+.host-badge {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  background: #FFFFFF;
+  border-radius: 40px;
+  padding: 8px 20px;
+  border: 3px solid #3498DB;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 12px;
 }
 
-.btn-primary:active {
-  transform: translateY(6px);
-  box-shadow: 0 2px 0px #D84F66, 0 4px 8px rgba(216, 79, 102, 0.2);
+.host-badge img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.btn-icon {
-  font-size: 1.3rem;
+.host-bubble {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #3498DB;
 }
 
-/* ------------------------------------------
-   2. Storybook Screen Styles
-   ------------------------------------------ */
+.hub-title {
+  font-family: 'Mitr', sans-serif;
+  font-size: 2.8rem;
+  color: #3498DB;
+  text-shadow: 2px 2px 0px #FFFFFF;
+}
 
-/* Header Styles */
-.story-header {
+.sub-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
+.sub-header h2 {
+  font-family: 'Mitr', sans-serif;
+  font-size: 1.8rem;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid #FFFFFF;
+  padding: 6px 24px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Navigation Circular Buttons */
 .btn-circle-nav {
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   border: 3px solid #FFFFFF;
   background: #FFFFFF;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
-  box-shadow: 0 4px 0px #D0D4DB, var(--shadow-soft);
+  box-shadow: 0 5px 0px #CBD0D6, var(--shadow-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,33 +145,219 @@ body, html {
 
 .btn-circle-nav:active {
   transform: translateY(3px);
-  box-shadow: 0 1px 0px #D0D4DB, var(--shadow-active);
+  box-shadow: 0 2px 0px #CBD0D6, var(--shadow-soft);
 }
 
-.story-title-container {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  padding: 8px 24px;
-  border-radius: 20px;
-  border: 2px solid #FFFFFF;
-  font-family: 'Mitr', sans-serif;
-  font-size: 1.4rem;
-  color: var(--text-main);
+/* ------------------------------------------
+   1. Main Hub Grid (Welcome Screen)
+   ------------------------------------------ */
+.hub-menu-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.hub-card {
+  height: 220px;
+  border-radius: var(--radius-large);
+  border: 6px solid #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s;
   box-shadow: var(--shadow-soft);
 }
 
-/* Main Stage */
+.hub-card:active {
+  transform: scale(0.95);
+}
+
+.card-learning {
+  background: linear-gradient(135deg, #B583F8 0%, var(--color-learning) 100%);
+  color: #FFFFFF;
+}
+
+.card-stories {
+  background: linear-gradient(135deg, #FF82C5 0%, var(--color-stories) 100%);
+  color: #FFFFFF;
+}
+
+.card-games {
+  background: linear-gradient(135deg, #44FFEC 0%, var(--color-games) 100%);
+  color: #3C4A5A;
+}
+
+.card-emoji {
+  font-size: 4.5rem;
+  transition: transform 0.2s;
+}
+
+.hub-card:hover .card-emoji {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.card-label {
+  font-family: 'Mitr', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+/* ------------------------------------------
+   2. Sub Menu Cards (Sub menus)
+   ------------------------------------------ */
+.sub-menu-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.menu-item-card {
+  height: 110px;
+  background: #FFFFFF;
+  border: 4px solid #FFFFFF;
+  border-radius: var(--radius-medium);
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  font-family: 'Mitr', sans-serif;
+  font-size: 1.25rem;
+  color: var(--text-main);
+  transition: transform 0.15s, border-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+}
+
+.menu-item-card:active {
+  transform: scale(0.95);
+  border-color: #3498DB;
+}
+
+/* ------------------------------------------
+   3. Learning Grid Layout
+   ------------------------------------------ */
+.learning-grid-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.grid-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Large letter/object learning cards */
+.learn-card {
+  height: 120px;
+  border-radius: 20px;
+  background: #FFFFFF;
+  border: 4px solid #FFFFFF;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+.learn-card:active {
+  transform: scale(0.9) rotate(-3deg);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.learn-card-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Colors learning cards dynamic styles */
+.learn-color-preview {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #FFFFFF;
+  box-shadow: var(--shadow-soft);
+}
+
+/* ------------------------------------------
+   4. Story Player Header speed controls
+   ------------------------------------------ */
+.speed-control-container {
+  display: flex;
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #FFFFFF;
+  padding: 4px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-soft);
+  gap: 4px;
+}
+
+.btn-speed {
+  border: none;
+  background: transparent;
+  padding: 6px 16px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  border-radius: 20px;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: all 0.15s;
+}
+
+.btn-speed.active {
+  background: #3498DB;
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+/* ------------------------------------------
+   5. Interactive Storybook Stage
+   ------------------------------------------ */
+.story-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
 .story-stage {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   overflow: hidden;
 }
 
-/* Illustration Container */
 .illustration-container {
-  flex: 1.3;
+  flex: 1.4;
   position: relative;
   border-radius: var(--radius-large);
   border: 5px solid #FFFFFF;
@@ -223,54 +372,20 @@ body, html {
   object-fit: cover;
 }
 
-/* Tap overlays for characters */
 #interactive-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: auto;
 }
 
-.interactive-target {
-  position: absolute;
-  cursor: pointer;
-  border-radius: 20px;
-  border: 3px dashed transparent;
-  transition: border-color 0.3s;
-  z-index: 10;
-}
-
-/* Pulse hint on characters for toddlers */
-.interactive-target::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  border: 4px solid rgba(255, 255, 255, 0.6);
-  opacity: 0;
-  animation: pulse-ring 2s infinite;
-}
-
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); opacity: 0; }
-  50% { opacity: 0.8; }
-  100% { transform: scale(1.15); opacity: 0; }
-}
-
-/* Subtitles/Text Area */
 .reading-container {
-  flex: 0.7;
+  flex: 0.6;
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius-large);
   border: 4px solid #FFFFFF;
-  padding: 20px;
+  padding: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -279,20 +394,18 @@ body, html {
 }
 
 .story-text {
-  font-size: 2.2rem;
-  line-height: 1.6;
+  font-size: 2.1rem;
+  line-height: 1.5;
   font-weight: 500;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* Word Highlight animation and state */
 .story-text span {
-  display: inline-block;
-  padding: 4px 12px;
+  padding: 4px 10px;
   border-radius: 12px;
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -300,126 +413,297 @@ body, html {
 .story-text span.active {
   background: var(--color-highlight);
   color: #35404F;
-  transform: scale(1.15);
-  box-shadow: 0 4px 10px rgba(255, 212, 59, 0.4);
+  transform: scale(1.12);
+  box-shadow: 0 4px 10px rgba(255, 190, 11, 0.35);
 }
 
-/* Footer & Navigation */
+/* ------------------------------------------
+   6. Reworked Footprint Buttons (Navigation)
+   ------------------------------------------ */
 .story-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
-  margin-top: 12px;
+  height: 76px;
+  margin-top: 10px;
 }
 
-.btn-nav {
-  flex: 1;
-  max-width: 160px;
-  height: 56px;
+.btn-footprint {
   background: #FFFFFF;
-  border: 3px solid #E6E8EB;
-  border-radius: var(--radius-medium);
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: var(--text-main);
+  border: 4px solid #FFFFFF;
+  border-radius: 40px;
+  padding: 6px 20px;
+  height: 64px;
+  min-width: 150px;
   cursor: pointer;
-  box-shadow: 0 6px 0px #E1E3E6, var(--shadow-soft);
+  box-shadow: 0 5px 0px #D0D4DB, var(--shadow-soft);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.1s;
+  gap: 12px;
+  transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.btn-nav:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0px #E1E3E6, var(--shadow-active);
+.btn-footprint:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0px #D0D4DB, var(--shadow-soft);
 }
 
-.page-indicator {
-  font-size: 1.2rem;
+.footprint-icon {
+  font-size: 2rem;
+  color: #8E9EA5;
+  transition: transform 0.2s;
+}
+
+.btn-footprint:hover .footprint-icon {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+.footprint-label {
+  font-family: 'Mitr', sans-serif;
+  font-size: 1.25rem;
+  color: var(--text-main);
   font-weight: 500;
-  color: var(--text-muted);
 }
 
-/* Disabled buttons */
-.btn-nav.disabled {
-  opacity: 0.5;
+/* Highlighting visual alert when finished reading */
+.btn-footprint.highlight-next {
+  animation: next-footprint-alert 0.8s infinite alternate ease-in-out;
+  border-color: var(--color-highlight);
+}
+
+@keyframes next-footprint-alert {
+  0% {
+    transform: scale(1.0);
+    box-shadow: 0 0 10px rgba(255, 190, 11, 0.4), 0 5px 0px #D89E00;
+  }
+  100% {
+    transform: scale(1.15) translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 190, 11, 0.9), 0 5px 0px #D89E00;
+    background-color: var(--color-highlight);
+  }
+}
+
+.btn-footprint.highlight-next .footprint-icon {
+  color: #3C4A5A;
+  animation: wiggle 0.4s infinite alternate;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+
+.btn-footprint.disabled {
+  opacity: 0.4;
   pointer-events: none;
 }
 
 /* ------------------------------------------
-   3. Custom Character Animations (Interactive)
+   7. Game World Screens & Stages
    ------------------------------------------ */
-
-/* slow loop for Nong Chang on cover */
-.bounce-loop {
-  animation: bounce-loop-anim 3s infinite ease-in-out;
+.story-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
 }
 
-@keyframes bounce-loop-anim {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.story-list-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #FFFFFF;
+  border: 4px solid #FFFFFF;
+  border-radius: var(--radius-medium);
+  padding: 12px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+  transition: transform 0.15s;
 }
 
-/* Interactive Bouncy Jump */
-.animate-bounce {
-  animation: bounce-anim 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+.story-list-item:active {
+  transform: scale(0.97);
 }
 
-@keyframes bounce-anim {
-  0%, 100% { transform: translateY(0) scale(1); }
-  30% { transform: translateY(-40px) scaleY(1.1) scaleX(0.9); }
-  70% { transform: translateY(0) scaleY(0.9) scaleX(1.1); }
+.story-list-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
-/* Interactive Wobble / Shake */
-.animate-shake {
-  animation: shake-anim 0.5s ease-in-out both;
+.placeholder-story {
+  width: 80px;
+  height: 80px;
+  background: #EBF7FF;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
 }
 
-@keyframes shake-anim {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  15% { transform: translateX(-8px) rotate(-3deg); }
-  30% { transform: translateX(6px) rotate(3deg); }
-  45% { transform: translateX(-5px) rotate(-2deg); }
-  60% { transform: translateX(4px) rotate(2deg); }
-  75% { transform: translateX(-2px) rotate(-1deg); }
+.story-item-info h3 {
+  font-family: 'Mitr', sans-serif;
+  font-size: 1.25rem;
+  color: var(--text-main);
+  margin-bottom: 4px;
 }
 
-/* Interactive Waddle (Tortoise walking) */
-.animate-waddle {
-  animation: waddle-anim 0.6s ease-in-out both;
+.story-item-info p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
-@keyframes waddle-anim {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-8deg) translateY(-5px); }
-  75% { transform: rotate(8deg) translateY(-5px); }
+.story-list-item.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
-/* Interactive Sleeping Snore effect */
-.animate-sleep-float {
-  animation: sleep-float-anim 2s infinite ease-in-out;
+.game-stage {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 4px solid #FFFFFF;
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  padding: 16px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes sleep-float-anim {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-8px) scale(1.05); }
+#game-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-/* Responsive adjustment for tablets/desktops */
-@media (min-width: 768px) {
-  .screen {
-    padding: 24px 60px;
-  }
-  
-  .story-text {
-    font-size: 2.8rem;
-  }
-  
-  .welcome-card {
-    padding: 48px;
-  }
+/* Game 1: Animal Soundboard styling */
+.soundboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.soundboard-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 4px solid #FFFFFF;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.soundboard-card:active {
+  transform: scale(0.9) rotate(3deg);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.soundboard-emoji {
+  font-size: 3.5rem;
+  margin-bottom: 4px;
+}
+
+.soundboard-name {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+/* Game 2: Color Sorter styling */
+.sorter-game-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.sorter-play-area {
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+.sorter-basket-area {
+  height: 120px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 3px dashed #E2E8F0;
+  background: rgba(235, 247, 255, 0.4);
+}
+
+.sorter-basket {
+  width: 110px;
+  height: 90px;
+  border-radius: 16px;
+  border: 4px solid #FFFFFF;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Mitr', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.sorter-ball {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 4px solid #FFFFFF;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  transition: transform 0.1s;
+}
+
+.sorter-ball:active {
+  transform: scale(1.1);
+  z-index: 100;
+}
+
+.score-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #3498DB;
+  color: #FFFFFF;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: 'Mitr', sans-serif;
+  font-size: 1.1rem;
+}
+
+/* Animations */
+.animate-pulse {
+  animation: pulse-target 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-target {
+  0% { transform: scale(1.0); }
+  100% { transform: scale(1.08); }
 }

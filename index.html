@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Kid Club - นิทานโต้ตอบสำหรับเด็ก</title>
+  <title>Kid Club - สวนสนุกและการเรียนรู้สำหรับเด็ก</title>
   
-  <!-- SEO & Mobile Config -->
-  <meta name="description" content="นิทานโต้ตอบสุดสนุกสำหรับเด็กวัย 2-3 ปี พร้อมระบบไฮไลต์คำและตัวการ์ตูนขยับได้เมื่อจิ้ม">
+  <!-- PWA & Mobile Config -->
+  <meta name="description" content="พื้นที่การเรียนรู้ นิทานโต้ตอบ และเกมพัฒนาทักษะ สำหรับเด็กวัย 2-3 ปี">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   
-  <!-- Google Fonts: Mitr for headings and Kanit for reading -->
+  <!-- Font Setup -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css?family=Kanit:300,400,500,600|Mitr:400,500,600&display=swap" rel="stylesheet">
@@ -22,70 +22,182 @@
   <!-- App Wrapper -->
   <div id="app-container">
     
-    <!-- Welcome Screen -->
+    <!-- 1. MAIN HUB SCREEN (หน้าหลักสวนสนุก) -->
     <div id="welcome-screen" class="screen active">
-      <div class="welcome-card">
-        <div class="welcome-host-container">
-          <img src="assets/images/host_elephant.jpg" alt="พี่ช้างน้อย" id="welcome-host" class="bounce-loop">
+      <header class="hub-header">
+        <div class="host-badge">
+          <img src="assets/images/host_elephant.jpg" alt="พี่ช้างน้อย" class="bounce-loop">
+          <span class="host-bubble">ยินดีต้อนรับสู่ Kid Club!</span>
         </div>
-        <h1 class="app-title">Kid Club</h1>
-        <p class="welcome-text">มาฟังนิทานแสนสนุกกันนะ!</p>
-        <button id="btn-play-story" class="btn-primary">
-          <span class="btn-text">เริ่มเล่นเลย</span>
-          <span class="btn-icon">▶</span>
+        <h1 class="hub-title">Kid Club</h1>
+      </header>
+      
+      <main class="hub-menu-grid">
+        <!-- Card 1: Learning World -->
+        <button class="hub-card card-learning" data-target="learning-menu-screen">
+          <div class="card-emoji">📚</div>
+          <div class="card-label">หมวดเรียนรู้</div>
         </button>
-      </div>
+        
+        <!-- Card 2: Story World -->
+        <button class="hub-card card-stories" data-target="story-menu-screen">
+          <div class="card-emoji">📖</div>
+          <div class="card-label">หมวดเล่นนิทาน</div>
+        </button>
+        
+        <!-- Card 3: Game World -->
+        <button class="hub-card card-games" data-target="games-menu-screen">
+          <div class="card-emoji">🎮</div>
+          <div class="card-label">หมวดเกมส์</div>
+        </button>
+      </main>
     </div>
 
-    <!-- Story Book Screen -->
-    <div id="story-screen" class="screen">
-      <!-- Top Bar / Header -->
-      <header class="story-header">
-        <button id="btn-home" class="btn-circle-nav">🏠</button>
-        <div class="story-title-container">
-          <span id="story-title">กระต่ายกับเต่า</span>
+    <!-- 2. LEARNING MENU SCREEN (เมนูย่อยหมวดเรียนรู้) -->
+    <div id="learning-menu-screen" class="screen">
+      <header class="sub-header">
+        <button class="btn-back-home btn-circle-nav">🏠</button>
+        <h2>หมวดเรียนรู้</h2>
+        <div style="width:50px;"></div>
+      </header>
+      
+      <main class="sub-menu-grid">
+        <button class="menu-item-card" data-learn="thai">🇹🇭 ภาษาไทย ก-ฮ</button>
+        <button class="menu-item-card" data-learn="english">🇬🇧 ภาษาอังกฤษ A-Z</button>
+        <button class="menu-item-card" data-learn="colors">🎨 เรียนรู้สีสัน</button>
+        <button class="menu-item-card" data-learn="fruits">🍎 เรียนรู้ผลไม้</button>
+        <button class="menu-item-card" data-learn="vehicles">🚗 เรียนรู้เรื่องรถ</button>
+        <button class="menu-item-card" data-learn="home">🏠 ของใช้ในบ้าน</button>
+        <button class="menu-item-card" data-learn="careers">👮 เรียนรู้อาชีพ</button>
+      </main>
+    </div>
+
+    <!-- 3. LEARNING PLAY GRID SCREEN (กระดานการเรียนรู้หลัก) -->
+    <div id="learning-grid-screen" class="screen">
+      <header class="sub-header">
+        <button class="btn-back-to btn-circle-nav" data-target="learning-menu-screen">◀</button>
+        <h2 id="learning-grid-title">การเรียนรู้</h2>
+        <div style="width:50px;"></div>
+      </header>
+      
+      <main class="learning-grid-container">
+        <div id="learning-grid" class="grid-content">
+          <!-- Dynamic cards injected by JS -->
         </div>
+      </main>
+    </div>
+
+    <!-- 4. STORY MENU SCREEN (เมนูนิทาน) -->
+    <div id="story-menu-screen" class="screen">
+      <header class="sub-header">
+        <button class="btn-back-home btn-circle-nav">🏠</button>
+        <h2>หมวดเล่นนิทาน</h2>
+        <div style="width:50px;"></div>
+      </header>
+      
+      <main class="story-list-container">
+        <button class="story-list-item active" data-story="rabbit_and_tortoise">
+          <img src="assets/images/page1.jpg" alt="กระต่ายกับเต่า">
+          <div class="story-item-info">
+            <h3>กระต่ายกับเต่า</h3>
+            <p>เรื่องราวความเพียรพยายามและไม่ประมาท</p>
+          </div>
+        </button>
+        
+        <button class="story-list-item disabled">
+          <div class="placeholder-story">🐷</div>
+          <div class="story-item-info">
+            <h3>ลูกหมูสามตัว</h3>
+            <p>เร็วๆ นี้</p>
+          </div>
+        </button>
+      </main>
+    </div>
+
+    <!-- 5. STORY PLAY SCREEN (เครื่องเล่นนิทานหลัก) -->
+    <div id="story-screen" class="screen">
+      <header class="story-header">
+        <button class="btn-back-to btn-circle-nav" data-target="story-menu-screen">◀</button>
+        
+        <!-- Speed Narration Controllers -->
+        <div class="speed-control-container">
+          <button class="btn-speed" data-speed="0.8">🐢 ช้า</button>
+          <button class="btn-speed active" data-speed="1.0">🚶 ปกติ</button>
+          <button class="btn-speed" data-speed="1.2">🚀 เร็ว</button>
+        </div>
+        
         <button id="btn-sound-toggle" class="btn-circle-nav">🔊</button>
       </header>
 
-      <!-- Main Stage -->
       <main class="story-stage">
         <!-- Interactive Illustration Area -->
         <div class="illustration-container">
           <img id="scene-image" src="" alt="ฉากนิทาน">
-          <!-- Interactive tap overlay targets will be rendered here dynamically -->
           <div id="interactive-overlay"></div>
         </div>
 
-        <!-- Subtitles / Reading Area -->
+        <!-- Text Display -->
         <div class="reading-container">
-          <div id="text-display" class="story-text">
-            <!-- Words/chunks will be injected here dynamically -->
-          </div>
+          <div id="text-display" class="story-text"></div>
         </div>
       </main>
 
-      <!-- Navigation Footer -->
+      <!-- Reworked Footprint Navigation Footer -->
       <footer class="story-footer">
-        <button id="btn-prev" class="btn-nav">
-          <span class="nav-arrow">◀</span> ย้อนกลับ
+        <!-- Back Footprint -->
+        <button id="btn-prev" class="btn-footprint">
+          <div class="footprint-icon">🐾</div>
+          <span class="footprint-label">ย้อนกลับ</span>
         </button>
         
         <div class="page-indicator">
           หน้า <span id="current-page-num">1</span>/7
         </div>
         
-        <button id="btn-next" class="btn-nav">
-          ถัดไป <span class="nav-arrow">▶</span>
+        <!-- Next Footprint (Alert Glow when ended) -->
+        <button id="btn-next" class="btn-footprint">
+          <div class="footprint-glow-container">
+            <div class="footprint-glow"></div>
+            <div class="footprint-icon">🐾</div>
+          </div>
+          <span class="footprint-label">ถัดไป</span>
         </button>
       </footer>
     </div>
 
+    <!-- 6. GAMES MENU SCREEN (เมนูหมวดเกมส์) -->
+    <div id="games-menu-screen" class="screen">
+      <header class="sub-header">
+        <button class="btn-back-home btn-circle-nav">🏠</button>
+        <h2>หมวดเกมส์</h2>
+        <div style="width:50px;"></div>
+      </header>
+      
+      <main class="sub-menu-grid">
+        <button class="menu-item-card game-card" data-game="soundboard">🐱 บอร์ดเสียงสัตว์หรรษา</button>
+        <button class="menu-item-card game-card" data-game="sorter">🔴 กล่องคัดแยกสีของเล่น</button>
+      </main>
+    </div>
+
+    <!-- 7. GAME PLAY SCREEN (หน้าเล่นเกมส์) -->
+    <div id="game-play-screen" class="screen">
+      <header class="sub-header">
+        <button class="btn-back-to btn-circle-nav" data-target="games-menu-screen">◀</button>
+        <h2 id="game-play-title">เล่นเกมส์</h2>
+        <div style="width:50px;"></div>
+      </header>
+      
+      <main class="game-stage">
+        <div id="game-canvas">
+          <!-- Game elements dynamically loaded here -->
+        </div>
+      </main>
+    </div>
+
   </div>
 
-  <!-- Audio Elements -->
+  <!-- Audio elements -->
   <audio id="narration-audio"></audio>
-  <audio id="bg-music" loop src="https://assets.mixkit.co/active_storage/sfx/123/123-200.wav" style="display:none;"></audio> <!-- Fallback loop if needed, will keep quiet by default -->
 
   <script src="index.js"></script>
 </body>

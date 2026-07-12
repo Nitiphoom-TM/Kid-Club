@@ -1,17 +1,16 @@
 /* ==========================================
-   Kid Club - Interactive Storybook Engine
+   Kid Club - Master Application Engine
    ========================================== */
 
 let storyData = null;
 let currentPageIndex = 0;
 let isSoundEnabled = true;
 let audioContext = null;
+let currentPlaybackSpeed = 1.0;
 
 // DOM Elements
-const welcomeScreen = document.getElementById('welcome-screen');
-const storyScreen = document.getElementById('story-screen');
+const screens = document.querySelectorAll('.screen');
 const btnPlayStory = document.getElementById('btn-play-story');
-const btnHome = document.getElementById('btn-home');
 const btnSoundToggle = document.getElementById('btn-sound-toggle');
 const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
@@ -22,31 +21,83 @@ const interactiveOverlay = document.getElementById('interactive-overlay');
 const narrationAudio = document.getElementById('narration-audio');
 
 // ------------------------------------------
-// 1. Init & Event Listeners
+// 1. App Navigation & Routing
 // ------------------------------------------
 
-async function init() {
-  try {
-    // Load story JSON configuration
-    const response = await fetch('assets/stories/rabbit_and_tortoise.json');
-    storyData = await response.json();
-    console.log('Story loaded:', storyData.title);
-    
-    // Bind Event Listeners
-    btnPlayStory.addEventListener('click', startStory);
-    btnHome.addEventListener('click', goHome);
-    btnSoundToggle.addEventListener('click', toggleSound);
-    btnPrev.addEventListener('click', prevPage);
-    btnNext.addEventListener('click', nextPage);
-    
-    // Timeupdate sync for highlighting text
-    narrationAudio.addEventListener('timeupdate', syncHighlighting);
-  } catch (error) {
-    console.error('Error initializing Kid Club:', error);
+function showScreen(screenId) {
+  screens.forEach(screen => {
+    screen.classList.remove('active');
+  });
+  const activeScreen = document.getElementById(screenId);
+  if (activeScreen) {
+    activeScreen.classList.add('active');
+  }
+  
+  // Pause story narration when leaving the storybook player
+  if (screenId !== 'story-screen') {
+    narrationAudio.pause();
+    removeNextGlow();
   }
 }
 
-// Start user audio context on first touch to satisfy browser security policies
+function initNavigation() {
+  // Hub Main Menu Cards
+  document.querySelectorAll('.hub-card').forEach(card => {
+    card.addEventListener('click', () => {
+      initAudioContext();
+      const target = card.dataset.target;
+      showScreen(target);
+    });
+  });
+
+  // Back to Home buttons
+  document.querySelectorAll('.btn-back-home').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showScreen('welcome-screen');
+    });
+  });
+
+  // Generic Back buttons
+  document.querySelectorAll('.btn-back-to').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.target;
+      showScreen(target);
+    });
+  });
+
+  // Story Choice Selector
+  document.querySelectorAll('.story-list-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const storyId = item.dataset.story;
+      if (storyId === 'rabbit_and_tortoise') {
+        startStory();
+      }
+    });
+  });
+
+  // Learning Menu Grid Selector
+  document.querySelectorAll('[data-learn]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.dataset.learn;
+      const label = btn.innerText;
+      loadLearningGrid(category, label);
+    });
+  });
+
+  // Game Menu Selector
+  document.querySelectorAll('[data-game]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const gameKey = btn.dataset.game;
+      const label = btn.innerText;
+      loadGame(gameKey, label);
+    });
+  });
+}
+
+// ------------------------------------------
+// 2. Audio Context & TTS Setup
+// ------------------------------------------
+
 function initAudioContext() {
   if (!audioContext) {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -56,18 +107,17 @@ function initAudioContext() {
   }
 }
 
-function startStory() {
-  initAudioContext();
-  welcomeScreen.classList.remove('active');
-  storyScreen.classList.add('active');
-  currentPageIndex = 0;
-  loadPage(currentPageIndex);
-}
-
-function goHome() {
-  narrationAudio.pause();
-  storyScreen.classList.remove('active');
-  welcomeScreen.classList.add('active');
+// Speak text using Web Speech API in Thai
+function speakThai(text, pitch = 1.3) {
+  if (!isSoundEnabled) return;
+  window.speechSynthesis.cancel(); // Stop any active speech
+  
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'th-TH';
+  utterance.pitch = pitch; // High pitched and cute
+  utterance.rate = 0.95;   // Friendly speed
+  
+  window.speechSynthesis.speak(utterance);
 }
 
 function toggleSound() {
@@ -75,6 +125,7 @@ function toggleSound() {
   btnSoundToggle.innerText = isSoundEnabled ? '🔊' : '🔇';
   if (!isSoundEnabled) {
     narrationAudio.muted = true;
+    window.speechSynthesis.cancel();
   } else {
     initAudioContext();
     narrationAudio.muted = false;
@@ -82,8 +133,24 @@ function toggleSound() {
 }
 
 // ------------------------------------------
-// 2. Page Loading & Interaction Render
+// 3. Interactive Storybook Logic
 // ------------------------------------------
+
+async function loadStoryData() {
+  try {
+    const response = await fetch('assets/stories/rabbit_and_tortoise.json');
+    storyData = await response.json();
+  } catch (error) {
+    console.error('Failed to load story JSON config:', error);
+  }
+}
+
+function startStory() {
+  initAudioContext();
+  showScreen('story-screen');
+  currentPageIndex = 0;
+  loadPage(currentPageIndex);
+}
 
 function loadPage(index) {
   if (!storyData || index < 0 || index >= storyData.pages.length) return;
@@ -95,11 +162,14 @@ function loadPage(index) {
   pageNumSpan.innerText = page.pageNumber;
   sceneImage.src = page.image;
   
-  // Update Nav Buttons
+  // Reset foot navigation glow
+  removeNextGlow();
+  
+  // Update Nav buttons
   btnPrev.classList.toggle('disabled', index === 0);
   btnNext.classList.toggle('disabled', index === storyData.pages.length - 1);
   
-  // Render text chunks into spans
+  // Render chunks
   textDisplay.innerHTML = '';
   page.chunks.forEach((chunk, i) => {
     const span = document.createElement('span');
@@ -108,7 +178,7 @@ function loadPage(index) {
     textDisplay.appendChild(span);
   });
   
-  // Render tap target overlays for interactive characters
+  // Interactive targets
   interactiveOverlay.innerHTML = '';
   page.interactives.forEach(char => {
     const target = document.createElement('div');
@@ -118,7 +188,6 @@ function loadPage(index) {
     target.style.width = `${char.width}%`;
     target.style.height = `${char.height}%`;
     
-    // Add interaction trigger
     target.addEventListener('click', (e) => {
       e.stopPropagation();
       triggerCharacter(char);
@@ -127,14 +196,14 @@ function loadPage(index) {
     interactiveOverlay.appendChild(target);
   });
   
-  // Play Narration
+  // Load and play narration audio
   narrationAudio.src = page.audio;
+  narrationAudio.playbackRate = currentPlaybackSpeed;
   narrationAudio.currentTime = 0;
   
-  // Tiny delay to ensure audio is loaded before playing
   setTimeout(() => {
-    narrationAudio.play().catch(e => console.log("Auto-play blocked by browser. Awaiting interaction."));
-  }, 100);
+    narrationAudio.play().catch(e => console.log('Auto-play blocked, awaiting user interaction.'));
+  }, 120);
 }
 
 function prevPage() {
@@ -149,16 +218,11 @@ function nextPage() {
   }
 }
 
-// ------------------------------------------
-// 3. Audio Sync & Text Highlighting
-// ------------------------------------------
-
 function syncHighlighting() {
   if (!storyData) return;
   const page = storyData.pages[currentPageIndex];
   const currentTime = narrationAudio.currentTime;
   
-  // Find which chunk is active based on timings
   let activeIndex = -1;
   for (let i = 0; i < page.timings.length; i++) {
     if (currentTime >= page.timings[i]) {
@@ -168,21 +232,24 @@ function syncHighlighting() {
     }
   }
   
-  // Apply highlight class to spans
   const spans = textDisplay.querySelectorAll('span');
   spans.forEach((span, i) => {
     span.classList.toggle('active', i === activeIndex);
   });
 }
 
-// ------------------------------------------
-// 4. Character Animations & Web Audio Synthesizer
-// ------------------------------------------
+function handleNarrationEnded() {
+  // Reading finished - trigger the glow and bounce alert on the Next footprint button
+  btnNext.classList.add('highlight-next');
+}
+
+function removeNextGlow() {
+  btnNext.classList.remove('highlight-next');
+}
 
 function triggerCharacter(char) {
   initAudioContext();
   
-  // Apply Animation to scene image container briefly
   const imgElement = document.getElementById('scene-image');
   const animClass = `animate-${char.animation}`;
   
@@ -191,17 +258,283 @@ function triggerCharacter(char) {
     imgElement.classList.remove(animClass);
   }, 600);
   
-  // Play dynamic sound effect
   if (isSoundEnabled) {
     playSynthSound(char.sound);
   }
 }
 
-// Play pre-mapped synthesizer sounds programmatically
+// ------------------------------------------
+// 4. Learning World Grids Data & Logic
+// ------------------------------------------
+
+const LEARNING_DATA = {
+  thai: [
+    { key: "ก", val: "กอ ไก่" }, { key: "ข", val: "ขอ ไข่" }, { key: "ฃ", val: "ขอ ขวด" }, { key: "ค", val: "คอ ควาย" },
+    { key: "ฅ", val: "คอ คน" }, { key: "ฆ", val: "คอ ระฆัง" }, { key: "ง", val: "งอ งู" }, { key: "จ", val: "จอ จาน" },
+    { key: "ฉ", val: "ฉอ ฉิ่ง" }, { key: "ช", val: "ชอ ช้าง" }, { key: "ซ", val: "ซอ โซ่" }, { key: "ฌ", val: "ฌอ เฌอ" },
+    { key: "ญ", val: "ญอ หญิง" }, { key: "ฎ", val: "ดอ ชฎา" }, { key: "ฏ", val: "ตอ ปฏัก" }, { key: "ฐ", val: "ถอ ฐาน" },
+    { key: "ฑ", val: "ทอ มณโฑ" }, { key: "ฒ", val: "ทอ ผู้เฒ่า" }, { key: "ณ", val: "ณอ เณร" }, { key: "ด", val: "ดอ เด็ก" },
+    { key: "ต", val: "ตอ เต่า" }, { key: "ถ", val: "ถอ ถุง" }, { key: "ท", val: "ทอ ทหาร" }, { key: "ธ", val: "ธอ ธง" },
+    { key: "น", val: "นอ หนู" }, { key: "บ", val: "บอ ใบไม้" }, { key: "ป", val: "ปอ ปลา" }, { key: "ผ", val: "ผอ ผึ้ง" },
+    { key: "ฝ", val: "ฝอ ฝา" }, { key: "พ", val: "พอ พาน" }, { key: "ฟ", val: "ฟอ ฟัน" }, { key: "ภ", val: "พอ สำเภา" },
+    { key: "ม", val: "มอ ม้า" }, { key: "ย", val: "ยอ ยักษ์" }, { key: "ร", val: "รอ เรือ" }, { key: "ล", val: "ลอ ลิง" },
+    { key: "ว", val: "วอ แหวน" }, { key: "ศ", val: "สอ ศาลา" }, { key: "ษ", val: "สอ ฤาษี" }, { key: "ส", val: "สอ เสือ" },
+    { key: "ห", val: "หอ หีบ" }, { key: "ฬ", val: "ลอ จุฬา" }, { key: "อ", val: "ออ อ่าง" }, { key: "ฮ", val: "ฮอ นกฮูก" }
+  ],
+  english: [
+    { key: "A", val: "เอ แแอปเปิ้ล" }, { key: "B", val: "บี บานาน่า" }, { key: "C", val: "ซี แคท" }, { key: "D", val: "ดี ด็อก" },
+    { key: "E", val: "อี เอลเลเฟ่นท์" }, { key: "F", val: "เอฟ ฟิช" }, { key: "G", val: "จี เกรป" }, { key: "H", val: "เอช ฮอร์ส" },
+    { key: "I", val: "ไอ ไอศกรีม" }, { key: "J", val: "เจ เจลลี่" }, { key: "K", val: "เค ไคท์" }, { key: "L", val: "แอล ไลออน" },
+    { key: "M", val: "เอ็ม มังกี้" }, { key: "N", val: "เอ็น เนสท์" }, { key: "O", val: "โอ ออเรนจ์" }, { key: "P", val: "พี แพนด้า" },
+    { key: "Q", val: "คิว ควีน" }, { key: "R", val: "อาร์ แรบบิท" }, { key: "S", val: "เอส ซัน" }, { key: "T", val: "ที ไทเกอร์" },
+    { key: "U", val: "ยู อัมเบรลล่า" }, { key: "V", val: "วี แวน" }, { key: "W", val: "ดับเบิ้ลยู วอเตอร์" }, { key: "X", val: "เอ็กซ์ ไซโลโฟน" },
+    { key: "Y", val: "วาย โยโย่" }, { key: "Z", val: "ซี แซบรา" }
+  ],
+  colors: [
+    { key: "#FF3366", val: "สีแดง" }, { key: "#FFCC00", val: "สีเหลือง" }, { key: "#3399FF", val: "สีน้ำเงิน" },
+    { key: "#2ECC71", val: "สีเขียว" }, { key: "#FF7F27", val: "สีส้ม" }, { key: "#9B5DE5", val: "สีม่วง" },
+    { key: "#FF82C5", val: "สีชมพู" }, { key: "#1E1E1E", val: "สีดำ" }
+  ],
+  fruits: [
+    { key: "🍎", val: "แอปเปิ้ล" }, { key: "🍌", val: "กล้วย" }, { key: "🍊", val: "ส้ม" }, { key: "🍇", val: "องุ่น" },
+    { key: "🍓", val: "สตรอว์เบอร์รี" }, { key: "🍉", val: "แตงโม" }, { key: "🥭", val: "มะม่วง" }, { key: "🍍", val: "สับปะรด" }
+  ],
+  vehicles: [
+    { key: "🚗", val: "รถยนต์" }, { key: "🚓", val: "รถตำรวจ" }, { key: "🚑", val: "รถพยาบาล" }, { key: "🚒", val: "รถดับเพลิง" },
+    { key: "🚂", val: "รถไฟ" }, { key: "✈️", val: "เครื่องบิน" }, { key: "🚲", val: "จักรยาน" }, { key: "🚜", val: "รถไถ" }
+  ],
+  home: [
+    { key: "🛏️", val: "เตียงนอน" }, { key: "🪑", val: "เก้าอี้" }, { key: "🍽️", val: "จานข้าว" }, { key: "⏰", val: "นาฬิกา" },
+    { key: "☎️", val: "โทรศัพท์" }, { key: "🔑", val: "กุญแจ" }, { key: "🥛", val: "แก้วน้ำ" }, { key: "☂️", val: "ร่ม" }
+  ],
+  careers: [
+    { key: "🩺", val: "คุณหมอ" }, { key: "🍎", val: "คุณครู" }, { key: "👮", val: "คุณตำรวจ" }, { key: "👨‍🚒", val: "นักดับเพลิง" },
+    { key: "🍳", val: "พ่อครัว" }, { key: "👨‍🌾", val: "ชาวนา" }, { key: "👩‍✈️", val: "นักบิน" }, { key: "👨‍🚀", val: "นักบินอวกาศ" }
+  ]
+};
+
+function loadLearningGrid(category, label) {
+  const gridTitle = document.getElementById('learning-grid-title');
+  const gridContainer = document.getElementById('learning-grid');
+  
+  gridTitle.innerText = label;
+  gridContainer.innerHTML = '';
+  
+  const items = LEARNING_DATA[category] || [];
+  
+  items.forEach(item => {
+    const card = document.createElement('button');
+    card.className = 'learn-card';
+    
+    if (category === 'colors') {
+      const preview = document.createElement('div');
+      preview.className = 'learn-color-preview';
+      preview.style.backgroundColor = item.key;
+      card.appendChild(preview);
+      
+      const text = document.createElement('div');
+      text.className = 'learn-card-label';
+      text.innerText = item.val;
+      card.appendChild(text);
+    } else {
+      card.innerText = item.key;
+      const text = document.createElement('div');
+      text.className = 'learn-card-label';
+      text.innerText = item.val;
+      card.appendChild(text);
+    }
+    
+    // Tap to Speak logic for child learning
+    card.addEventListener('click', () => {
+      card.classList.add('animate-pulse');
+      setTimeout(() => card.classList.remove('animate-pulse'), 400);
+      
+      // Sound effect pops
+      synthJump();
+      speakThai(item.val);
+    });
+    
+    gridContainer.appendChild(card);
+  });
+  
+  showScreen('learning-grid-screen');
+}
+
+// ------------------------------------------
+// 5. Game World Logic
+// ------------------------------------------
+
+function loadGame(gameKey, label) {
+  const gameTitle = document.getElementById('game-play-title');
+  const gameCanvas = document.getElementById('game-canvas');
+  
+  gameTitle.innerText = label;
+  gameCanvas.innerHTML = '';
+  
+  if (gameKey === 'soundboard') {
+    initAnimalSoundboard(gameCanvas);
+  } else if (gameKey === 'sorter') {
+    initColorSorter(gameCanvas);
+  }
+  
+  showScreen('game-play-screen');
+}
+
+/* 🐱 Game 1: Animal Soundboard */
+const SOUNDBOARD_ANIMALS = [
+  { emoji: "🐱", name: "แมว", sound: "rabbit_laugh" },
+  { emoji: "🐶", name: "สุนัข", sound: "rabbit_gasp" },
+  { emoji: "🐮", name: "วัว", sound: "tortoise_speak" },
+  { emoji: "🐑", name: "แกะ", sound: "rabbit_snore" },
+  { emoji: "🐷", name: "หมู", sound: "tortoise_walk" },
+  { emoji: "🦁", name: "สิงโต", sound: "applause" },
+  { emoji: "🐸", name: "กบ", sound: "rabbit_jump" },
+  { emoji: "🦆", name: "เป็ด", sound: "rabbit_cheer" },
+  { emoji: "🐵", name: "ลิง", sound: "rabbit_laugh" },
+  { emoji: "🐔", name: "ไก่", sound: "rabbit_cheer" },
+  { emoji: "🐴", name: "ม้า", sound: "rabbit_run" },
+  { emoji: "🐘", name: "ช้าง", sound: "cheer" }
+];
+
+function initAnimalSoundboard(container) {
+  const grid = document.createElement('div');
+  grid.className = 'soundboard-grid';
+  
+  SOUNDBOARD_ANIMALS.forEach(animal => {
+    const card = document.createElement('button');
+    card.className = 'soundboard-card';
+    
+    const emoji = document.createElement('div');
+    emoji.className = 'soundboard-emoji';
+    emoji.innerText = animal.emoji;
+    
+    const name = document.createElement('div');
+    name.className = 'soundboard-name';
+    name.innerText = animal.name;
+    
+    card.appendChild(emoji);
+    card.appendChild(name);
+    
+    card.addEventListener('click', () => {
+      card.classList.add('animate-pulse');
+      setTimeout(() => card.classList.remove('animate-pulse'), 500);
+      
+      playSynthSound(animal.sound);
+      speakThai(animal.name, 1.4);
+    });
+    
+    grid.appendChild(card);
+  });
+  
+  container.appendChild(grid);
+}
+
+/* 🔴 Game 2: Color Sorter (Tap-to-match for Toddlers) */
+function initColorSorter(container) {
+  let score = 0;
+  let selectedBall = null;
+  
+  const gameWrapper = document.createElement('div');
+  gameWrapper.className = 'sorter-game-container';
+  
+  // Score indicator
+  const scoreBadge = document.createElement('div');
+  scoreBadge.className = 'score-badge';
+  scoreBadge.innerText = `คะแนน: ${score}`;
+  gameWrapper.appendChild(scoreBadge);
+  
+  // Top play area
+  const playArea = document.createElement('div');
+  playArea.className = 'sorter-play-area';
+  gameWrapper.appendChild(playArea);
+  
+  // Bottom basket area
+  const basketArea = document.createElement('div');
+  basketArea.className = 'sorter-basket-area';
+  
+  const colors = [
+    { label: "สีแดง", hex: "#FF3366", key: "red" },
+    { label: "สีเหลือง", hex: "#FFCC00", key: "yellow" },
+    { label: "สีน้ำเงิน", hex: "#3399FF", key: "blue" }
+  ];
+  
+  colors.forEach(col => {
+    const basket = document.createElement('div');
+    basket.className = 'sorter-basket';
+    basket.style.backgroundColor = col.hex;
+    basket.innerText = col.label;
+    
+    // Clicking a basket attempts to sort the active ball
+    basket.addEventListener('click', () => {
+      if (selectedBall) {
+        if (selectedBall.dataset.color === col.key) {
+          // Success!
+          score++;
+          scoreBadge.innerText = `คะแนน: ${score}`;
+          synthCheer();
+          speakThai("เก่งมากครับ!");
+          
+          // Animate ball drop
+          selectedBall.style.top = '100%';
+          selectedBall.style.opacity = '0';
+          
+          const targetBall = selectedBall;
+          selectedBall = null;
+          setTimeout(() => {
+            targetBall.remove();
+            spawnBall();
+          }, 300);
+        } else {
+          // Wrong basket - waddle waddle
+          selectedBall.classList.add('animate-shake');
+          speakThai("ลองใหม่นะจ๊ะ");
+          synthWalk();
+          setTimeout(() => {
+            selectedBall.classList.remove('animate-shake');
+          }, 500);
+        }
+      }
+    });
+    
+    basketArea.appendChild(basket);
+  });
+  
+  gameWrapper.appendChild(basketArea);
+  container.appendChild(gameWrapper);
+  
+  // Spawns a colored toy ball
+  function spawnBall() {
+    const ball = document.createElement('div');
+    ball.className = 'sorter-ball';
+    
+    // Choose random color
+    const randColor = colors[Math.floor(Math.random() * colors.length)];
+    ball.dataset.color = randColor.key;
+    ball.style.backgroundColor = randColor.hex;
+    ball.style.color = '#FFFFFF';
+    ball.innerText = '🎈';
+    
+    // Random position in play area
+    ball.style.left = `${20 + Math.random() * 60}%`;
+    ball.style.top = '30%';
+    
+    playArea.appendChild(ball);
+    selectedBall = ball;
+    
+    // Speak ball prompt
+    speakThai(`ลูกโป่งนี้สีอะไรเอ่ย จิ้มใส่กล่องสีให้ถูกนะจ๊ะ`);
+  }
+  
+  spawnBall();
+}
+
+// ------------------------------------------
+// 6. Narration Timing & Web Audio Synthesizer
+// ------------------------------------------
+
 function playSynthSound(soundKey) {
   if (!audioContext) return;
   
-  // Route to the appropriate synthesizer sound algorithm
   if (soundKey.includes('rabbit_jump')) {
     synthJump();
   } else if (soundKey.includes('rabbit_laugh')) {
@@ -227,7 +560,7 @@ function playSynthSound(soundKey) {
   }
 }
 
-// --- SYNTHESIZER SOUND GENERATORS ---
+// -- SYNTHESIZERS --
 
 function synthJump() {
   const osc = audioContext.createOscillator();
@@ -293,7 +626,7 @@ function synthSpeak() {
   
   osc.type = 'triangle';
   osc.frequency.setValueAtTime(130, audioContext.currentTime);
-  osc.frequency.linearRampToValueAtTime(170, audioContext.currentTime + 0.2);
+  osc.frequency.linearRampToValueAtTime(170, audioContext.currentTime + 0.25);
   
   gain.gain.setValueAtTime(0.25, audioContext.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.25);
@@ -366,12 +699,10 @@ function synthSnore() {
 }
 
 function synthCheer() {
-  // Synthesize soft applause & whistling
   const bufferSize = audioContext.sampleRate * 1.5;
   const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
   const data = buffer.getChannelData(0);
   
-  // Fill buffer with random white noise
   for (let i = 0; i < bufferSize; i++) {
     data[i] = Math.random() * 2 - 1;
   }
@@ -393,22 +724,6 @@ function synthCheer() {
   
   noise.start();
   noise.stop(audioContext.currentTime + 1.5);
-  
-  // Add a cute little bird-whistle
-  const osc = audioContext.createOscillator();
-  const oscGain = audioContext.createGain();
-  osc.type = 'sine';
-  osc.frequency.setValueAtTime(800, audioContext.currentTime);
-  osc.frequency.exponentialRampToValueAtTime(1500, audioContext.currentTime + 0.3);
-  
-  oscGain.gain.setValueAtTime(0.05, audioContext.currentTime);
-  oscGain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
-  
-  osc.connect(oscGain);
-  oscGain.connect(audioContext.destination);
-  
-  osc.start();
-  osc.stop(audioContext.currentTime + 0.3);
 }
 
 function synthCry() {
@@ -433,7 +748,6 @@ function synthCry() {
 }
 
 function synthApplause() {
-  // Sound of clapping hands
   const bufferSize = audioContext.sampleRate * 2.0;
   const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
   const data = buffer.getChannelData(0);
@@ -480,7 +794,39 @@ function synthRabbitCheer() {
 }
 
 // ------------------------------------------
-// 5. App Launch
+// 7. Event Binding & Start
 // ------------------------------------------
 
-window.addEventListener('DOMContentLoaded', init);
+function setupSpeedControls() {
+  document.querySelectorAll('.btn-speed').forEach(btn => {
+    btn.addEventListener('click', () => {
+      initAudioContext();
+      
+      // Update Active class
+      document.querySelectorAll('.btn-speed').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Update playbackRate
+      const speed = parseFloat(btn.dataset.speed);
+      currentPlaybackSpeed = speed;
+      narrationAudio.playbackRate = speed;
+    });
+  });
+}
+
+function bindMainEvents() {
+  btnSoundToggle.addEventListener('click', toggleSound);
+  btnPrev.addEventListener('click', prevPage);
+  btnNext.addEventListener('click', nextPage);
+  
+  narrationAudio.addEventListener('timeupdate', syncHighlighting);
+  narrationAudio.addEventListener('ended', handleNarrationEnded);
+  
+  setupSpeedControls();
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  initNavigation();
+  bindMainEvents();
+  await loadStoryData();
+});
