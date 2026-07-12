@@ -4,4 +4,7 @@ node_modules/
 *.log
 .agent/
 .agents
+rules.md
+souls/
+
 
