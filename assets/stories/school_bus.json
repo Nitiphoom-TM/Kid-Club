@@ -1,0 +1,86 @@
+{
+  "storyId": "school_bus",
+  "title": "รถบัสโรงเรียนน้อย... กับจูบวิเศษ",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "image": "assets/images/school_bus/page1.jpg",
+      "audio": "assets/audio/school_bus/page1.mp3",
+      "text": "แนะนำรถบัสโรงเรียนน้อย สีเหลืองสด วันนี้เป็นวันแรกที่รถบัสโรงเรียนน้อยจะต้องสะพายกระเป๋าเป้ใบใหม่สีฟ้าเพื่อเดินทางไปโรงเรียนอนุบาลสำหรับรถ",
+      "chunks": ["แนะนำรถบัสโรงเรียนน้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถบัสโรงเรียนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "image": "assets/images/school_bus/page2.jpg",
+      "audio": "assets/audio/school_bus/page2.mp3",
+      "text": "พอถึงหน้าประตูโรงเรียน เห็นคุณครูรถบัสตัวใหญ่ยืนรอรับอยู่ รถบัสโรงเรียนน้อยเริ่มกลัว กอดขาแม่รถบัสไว้แน่น น้ำตาไหลพราก หนูกลัว หนูปวดท้อง ไม่อยากไปโรงเรียน อยากอยู่กับแม่",
+      "chunks": ["พอถึงหน้าประตูโรงเรียน"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถบัสโรงเรียนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_cry" },
+        { "name": "แม่รถบัส", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "image": "assets/images/school_bus/page3.jpg",
+      "audio": "assets/audio/school_bus/page3.mp3",
+      "text": "แม่รถบัสคุกเข่าลงมา จับล้อรถน้อยๆ ของรถบัสโรงเรียนน้อยขึ้นมา แล้วก้มลงไป จุ๊บ! บนล้อรถฟอดใหญ่ นี่คือจูบวิเศษของแม่นะลูก เวลาลูกคิดถึงแม่ ให้เอามือน้อยๆ มาแปะที่ล้อรถ และตอนเย็นเป๊ง! แม่จะมารับลูกกลับบ้านแน่นอน",
+      "chunks": ["แม่รถบัสคุกเข่าลงมา"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถบัส", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถบัสโรงเรียนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "image": "assets/images/school_bus/page4.jpg",
+      "audio": "assets/audio/school_bus/page4.mp3",
+      "text": "รถบัสโรงเรียนน้อยกำล้อรถรับจูบวิเศษไว้แน่น รู้สึกอุ่นใจขึ้น จึงยอมจูงล้อคุณครูรถบัสเดินเข้าไปในห้องเรียน หันมาโบกมือบ๊ายบายคุณแม่ ตอนเย็นมารับหนูนะ",
+      "chunks": ["รถบัสโรงเรียนน้อยกำล้อรถ"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถบัสโรงเรียนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "image": "assets/images/school_bus/page5.jpg",
+      "audio": "assets/audio/school_bus/page5.mp3",
+      "text": "ในห้องเรียน มีรถเพื่อนๆ เยอะแยะเลย! มีบ่อลูกบอล มีบล็อกไม้ มีขนมอร่อยๆ รถบัสโรงเรียนน้อยได้ร้องเพลง เเต้นระบำกับเพื่อนรถน้อยๆ อย่างสนุกสนานจนลืมร้องไห้",
+      "chunks": ["ในห้องเรียน"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถบัสโรงเรียนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "cheer" }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "image": "assets/images/school_bus/page6.jpg",
+      "audio": "assets/audio/school_bus/page6.mp3",
+      "text": "มีช่วงหนึ่งตอนนอนกลางวัน รถบัสโรงเรียนน้อยตื่นขึ้นมาแล้วคิดถึงแม่นิดหน่อย จึงแบมือน้อยๆ ออกมาแล้วเอามาแนบที่ล้อรถตัวเองนิ่งๆ รู้สึกเหมือนมีแม่รถบัสมากอดอยู่จริง ๆ ด้วย!",
+      "chunks": ["มีช่วงหนึ่งตอนนอนกลางวัน"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถบัสโรงเรียนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_cry" }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "image": "assets/images/school_bus/page7.jpg",
+      "audio": "assets/audio/school_bus/page7.mp3",
+      "text": "เสียงกริ่งโรงเรียนเลิกดังขึ้น เป๊งๆๆ! รถบัสโรงเรียนน้อยวิ่งสะพายกระเป๋าออกมาที่หน้าประตู ก็เจอแม่รถบัสยืนยิ้มรอรับอยู่จริงๆ ด้วย! รถบัสโรงเรียนน้อยวิ่งกอดแม่ โรงเรียนสนุกที่สุดเลยแม่ พรุ่งนี้หนูจะมาอีก!",
+      "chunks": ["เสียงกริ่งโรงเรียนเลิกดังขึ้น"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถบัส", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "cheer" },
+        { "name": "รถบัสโรงเรียนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "applause" }
+      ]
+    }
+  ]
+}

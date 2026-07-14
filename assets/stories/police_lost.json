@@ -1,0 +1,86 @@
+{
+  "storyId": "police_lost",
+  "title": "รถตำรวจน้อย... เป็นรูปปั้นหิน!",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "image": "assets/images/police_lost/page1.jpg",
+      "audio": "assets/audio/police_lost/page1.mp3",
+      "text": "แนะนำรถตำรวจน้อย สีน้ำเงิน-ขาว เดินจูงมือแม่รถเก๋งตัวสวย เที่ยวในห้างสรรพสินค้าที่ใหญ่โตและมีไฟระยิบระยับสวยงามมาก มีรถหลายแบบเดินผ่านไปมาเต็มไปหมด",
+      "chunks": ["แนะนำรถตำรวจน้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถตำรวจน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" },
+        { "name": "แม่รถเก๋ง", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "image": "assets/images/police_lost/page2.jpg",
+      "audio": "assets/audio/police_lost/page2.mp3",
+      "text": "รถตำรวจน้อยเหลือบไปเห็นตู้กระจกที่มีรถบรรทุกหุ่นยนต์ตัวใหญ่พ่นไฟได้! มันกำลังขยับแขน แกร๊กๆ รถตำรวจน้อยตื่นเต้นมาก รีบเดินแยกตัวออกไปเกาะขอบกระจกดูรถบรรทุกหุ่นยนต์อย่างเพลิดเพลิน",
+      "chunks": ["รถตำรวจน้อยเหลือบไปเห็นตู้กระจก"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถตำรวจน้อย", "x": 20, "y": 55, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "image": "assets/images/police_lost/page3.jpg",
+      "audio": "assets/audio/police_lost/page3.mp3",
+      "text": "พอรถบรรทุกหุ่นยนต์หยุดขยับ รถตำรวจน้อยหันกลับมาจะเรียกแม่... แต่เอ๊ะ! แม่รถเก๋งหายไปไหนแล้ว? มีแต่รถใครก็ไม่รู้เดินผ่านไปมาเต็มไปหมด รถตำรวจน้อยเริ่มใจคอไม่ดี หน้าเบะ น้ำตาเริ่มคลอ",
+      "chunks": ["พอรถบรรทุกหุ่นยนต์หยุดขยับ"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถตำรวจน้อย", "x": 30, "y": 50, "width": 30, "height": 35, "animation": "shake", "sound": "rabbit_cry" }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "image": "assets/images/police_lost/page4.jpg",
+      "audio": "assets/audio/police_lost/page4.mp3",
+      "text": "รถตำรวจน้อยกำลังจะวิ่งพล่านออกไปตามหาคุณแม่ แต่ฉุกคิดถึงคาถาวิเศษที่เคยท่องกับพ่อแม่ได้ว่า ถ้าหลงทาง ห้ามเดินไปไหน ให้แปลงร่างเป็นรูปปั้นหิน ยืนนิ่งๆ อยู่กับที่! รถตำรวจน้อยจึงหยุดก้าวเท้าทันที ยืนนิ่งกอดอกเหมือนก้อนหิน",
+      "chunks": ["รถตำรวจน้อยกำลังจะวิ่งพล่าน"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถตำรวจน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "image": "assets/images/police_lost/page5.jpg",
+      "audio": "assets/audio/police_lost/page5.mp3",
+      "text": "ระหว่างที่ยืนเป็นรูปปั้นหิน มีรถตู้แปลกหน้าท่าทางน่าสงสัยเดินเข้ามาทัก หนูหลงทางเหรอ ไปหาแม่กับน้าข้างนอกไหม? รถตำรวจน้อยจำคำสอนได้ รีบส่ายหน้าแรงๆ ไม่ไปครับ/ค่ะ! หนูกำลังรอคุณแม่! แล้วยืนนิ่งที่เดิม",
+      "chunks": ["ระหว่างที่ยืนเป็นรูปปั้นหิน"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถตำรวจน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "image": "assets/images/police_lost/page6.jpg",
+      "audio": "assets/audio/police_lost/page6.mp3",
+      "text": "ไม่นานนัก แม่รถเก๋งที่กำลังวิ่งตามหาด้วยความตกใจ ก็หันมาเห็นรถตำรวจน้อยยืนนิ่งเป็นรูปปั้นอยู่ตรงหน้าตู้รถบรรทุกหุ่นยนต์ แม่รถเก๋งวิ่งเข้ามากอดรถตำรวจน้อยไว้แน่นด้วยความดีใจ",
+      "chunks": ["ไม่นานนัก"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเก๋ง", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถตำรวจน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "image": "assets/images/police_lost/page7.jpg",
+      "audio": "assets/audio/police_lost/page7.mp3",
+      "text": "แม่รถเก๋งชมรถตำรวจน้อยว่า เก่งมากจ๊ะที่เชื่อฟัง ถ้ายืนนิ่งๆ แม่จะเดินกลับมาหาเจอได้ง่ายที่สุดเลย ค่ำวันนั้น รถตำรวจน้อยได้กินน้ำมันรสไอศกรีมแสนอร่อยเป็นรางวัล และสัญญาว่าจะไม่ปล่อยมือแม่รถเก๋งในห้างอีกแล้ว",
+      "chunks": ["แม่รถเก๋งชมรถตำรวจน้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเก๋ง", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "cheer" },
+        { "name": "รถตำรวจน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "applause" }
+      ]
+    }
+  ]
+}

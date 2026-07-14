@@ -1,0 +1,88 @@
+{
+  "storyId": "excavator_stairs",
+  "title": "รถตักดินน้อยเดินเตาะแตะลงบันได",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "image": "assets/images/excavator_stairs/page1.jpg",
+      "audio": "assets/audio/excavator_stairs/page1.mp3",
+      "text": "แนะนำรถตักดินน้อย สีเหลืองอ๋อย มีที่ตักดินอันใหญ่ขยับดุ๊กดิ๊กได้ ยืนอยู่บนชั้นสองของบ้าน ทันใดนั้นได้ยินเสียงคุณแม่เรียกกินขนมจากข้างล่าง",
+      "chunks": ["แนะนำรถตักดินน้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถตักดินน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" },
+        { "name": "แม่รถเก๋ง", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "image": "assets/images/excavator_stairs/page2.jpg",
+      "audio": "assets/audio/excavator_stairs/page2.mp3",
+      "text": "ด้วยความดีใจและอยากกินขนมเร็วๆ รถตักดินน้อยรีบติดเครื่องยนต์ สตาร์ทรถแล้ววิ่งฉิ่วพุ่งตัวลงบันไดมาอย่างรวดเร็ว ตึกๆๆๆๆ!",
+      "chunks": ["ด้วยความดีใจและอยากกิน"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถตักดินน้อย", "x": 20, "y": 55, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "image": "assets/images/excavator_stairs/page3.jpg",
+      "audio": "assets/audio/excavator_stairs/page3.mp3",
+      "text": "ล้อรถตักดินน้อยเกิดลื่นไถลพลาดขั้นบันได! ว้ายยย! ตัวรถเอียงวูบ ก้นกระแทกขั้นบันไดดัง ปึ้ก! โอ๊ย! เกือบจะกลิ้งหลุนๆ ตกบันไดลงมาข้างล่าง",
+      "chunks": ["ล้อรถตักดินน้อยเกิดลื่นไถล"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถตักดินน้อย", "x": 30, "y": 50, "width": 30, "height": 35, "animation": "shake", "sound": "rabbit_cry" }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "image": "assets/images/excavator_stairs/page4.jpg",
+      "audio": "assets/audio/excavator_stairs/page4.mp3",
+      "text": "โชคดีที่คุณแม่รถเก๋งอยู่ที่เชิงบันไดพอดี รีบอ้าแขนสปอยเลอร์รับตัวรถตักดินน้อยไว้ได้ทันเวลา ฟึ่บ! รถตักดินน้อยตกใจร้องไห้โฮเพราะเจ็บก้น",
+      "chunks": ["โชคดีที่คุณแม่รถเก๋ง"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเก๋ง", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถตักดินน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "image": "assets/images/excavator_stairs/page5.jpg",
+      "audio": "assets/audio/excavator_stairs/page5.mp3",
+      "text": "คุณแม่ทายาแก้มช้ำให้ แล้วสอนกฎเหล็กว่า บันไดบ้านไม่ใช่ทางราบนะลูก เวลาลงบันได ห้ามวิ่งเด็ดขาด! ต้องใช้คาถา เดินต้วมเตี้ยมเหมือนเต่า ล้อจับราวบันได เดินลงทีละขั้นช้าๆ นะจ๊ะ",
+      "chunks": ["คุณแม่ทายาแก้มช้ำให้"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเก๋ง", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถตักดินน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "image": "assets/images/excavator_stairs/page6.jpg",
+      "audio": "assets/audio/excavator_stairs/page6.mp3",
+      "text": "วันต่อมา รถตักดินน้อยจะลงบันได คราวนี้จดจำคำแม่สอน ดับเครื่องยนต์ความเร็ว แล้วค่อยๆ ใช้ล้อเกาะราวบันได ก้าวลงทีละขั้นช้าๆ หนึ่ง... สอง... สาม... อย่างปลอดภัย",
+      "chunks": ["วันต่อมา รถตักดินน้อยจะลงบันได"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเก๋ง", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถตักดินน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "image": "assets/images/excavator_stairs/page7.jpg",
+      "audio": "assets/audio/excavator_stairs/page7.mp3",
+      "text": "พอลงมาถึงขั้นสุดท้าย คุณแม่รถเก๋งตบมือเชียร์ แปะๆๆ เก่งมากเลยลูก! รถตักดินน้อยยิ้มแก้มปริ ได้กินเค้กน้ำมันแสนอร่อยอย่างมีความสุขและปลอดภัย",
+      "chunks": ["พอลงมาถึงขั้นสุดท้าย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเก๋ง", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "cheer" },
+        { "name": "รถตักดินน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "applause" }
+      ]
+    }
+  ]
+}

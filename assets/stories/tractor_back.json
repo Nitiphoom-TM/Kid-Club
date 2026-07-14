@@ -1,0 +1,87 @@
+{
+  "storyId": "tractor_back",
+  "title": "รถแทรกเตอร์... มองตาสีแดง!",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "image": "assets/images/tractor_back/page1.jpg",
+      "audio": "assets/audio/tractor_back/page1.mp3",
+      "text": "แนะนำรถแทรกเตอร์น้อย สีเขียวสดใส ถือลูกบอลเด้งดึ๋งสีส้ม ขับเล่นในลานจอดรถกับพ่อรถบรรทุกตัวใหญ่",
+      "chunks": ["แนะนำรถแทรกเตอร์น้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถแทรกเตอร์น้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" },
+        { "name": "พ่อรถบรรทุก", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "image": "assets/images/tractor_back/page2.jpg",
+      "audio": "assets/audio/tractor_back/page2.mp3",
+      "text": "รถแทรกเตอร์น้อยทำลูกบอลหลุดมือ! บอลเด้ง ดึ๋ง ดึ๋ง ดึ๋ง กลิ้งหลุนๆ ไปหยุดอยู่ตรงท้ายรถขยะคันใหญ่สีดำที่จอดนิ่งอยู่",
+      "chunks": ["รถแทรกเตอร์น้อยทำลูกบอลหลุดมือ"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถแทรกเตอร์น้อย", "x": 20, "y": 55, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "image": "assets/images/tractor_back/page3.jpg",
+      "audio": "assets/audio/tractor_back/page3.mp3",
+      "text": "รถแทรกเตอร์น้อยรีบวิ่งตามบอลไปตรงท้ายรถขยะคันใหญ่สีดำทันที โดยไม่ทันสังเกตว่ารถขยะกำลังสตาร์ทเครื่องยนต์เสียงดัง บรึ่มมม!",
+      "chunks": ["รถแทรกเตอร์น้อยรีบวิ่งตามบอล"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถแทรกเตอร์น้อย", "x": 30, "y": 50, "width": 30, "height": 35, "animation": "shake", "sound": "rabbit_cry" }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "image": "assets/images/tractor_back/page4.jpg",
+      "audio": "assets/audio/tractor_back/page4.mp3",
+      "text": "ทันใดนั้น! ไฟท้ายสีแดงคู่โต ของรถขยะก็สว่างวาบขึ้นมา! พ่อรถบรรทุกหันมาเห็นร้องบอก รถแทรกเตอร์น้อย หยุดก่อน! รถขยะเริ่มขยับถอยหลังช้าๆ เสียงท่อไอเสียดัง ปุดๆๆ",
+      "chunks": ["ทันใดนั้น"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "พ่อรถบรรทุก", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถแทรกเตอร์น้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "image": "assets/images/tractor_back/page5.jpg",
+      "audio": "assets/audio/tractor_back/page5.mp3",
+      "text": "พ่อรถบรรทุกรีบอุ้มรถแทรกเตอร์น้อยขึ้นมาแนบอกอย่างปลอดภัย พ่อรถบรรทุกชี้ให้ดูรถขยะที่กำลังถอยหลัง รถแทรกเตอร์น้อยจ๋า ถ้าเห็นรถเปิด ตาสีแดง ด้านหลัง แปลว่าเขากำลังจะถอย และคนขับเขามองไม่เห็นรถตัวเล็กๆ ห้ามเข้าใกล้เด็ดขาดนะ",
+      "chunks": ["พ่อรถบรรทุกรีบอุ้มรถแทรกเตอร์น้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "พ่อรถบรรทุก", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถแทรกเตอร์น้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "image": "assets/images/tractor_back/page6.jpg",
+      "audio": "assets/audio/tractor_back/page6.mp3",
+      "text": "รถแทรกเตอร์น้อยเข้าใจแล้ว ยืนนิ่งอยู่บนฟุตบาทอย่างปลอดภัย ตาเฝ้ามองดูไฟท้ายสีแดงดวงโตจนกระทั่งรถขยะถอยออกไปเรียบร้อย",
+      "chunks": ["รถแทรกเตอร์น้อยเข้าใจแล้ว"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถแทรกเตอร์น้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "image": "assets/images/tractor_back/page7.jpg",
+      "audio": "assets/audio/tractor_back/page7.mp3",
+      "text": "พ่อรถบรรทุกพารถแทรกเตอร์น้อยไปซื้อลูกบอลลูกใหม่ รถแทรกเตอร์น้อยบอกคุณพ่อว่า ต่อไปนี้ถ้าหนูเห็นตาสีแดงของรถ หนูจะยืนนิ่งๆ เป็นก้อนหิน ไม่วิ่งไปไหนเลยครับ/ค่ะ พ่อรถบรรทุกยิ้มแล้วหอมแก้มรถแทรกเตอร์น้อยฟอดใหญ่",
+      "chunks": ["พ่อรถบรรทุกพารถแทรกเตอร์น้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "พ่อรถบรรทุก", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "cheer" },
+        { "name": "รถแทรกเตอร์น้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "applause" }
+      ]
+    }
+  ]
+}

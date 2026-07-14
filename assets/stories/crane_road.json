@@ -1,0 +1,88 @@
+{
+  "storyId": "crane_road",
+  "title": "ปั้นจั่นน้อย... ระวังถนน!",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "image": "assets/images/crane_road/page1.jpg",
+      "audio": "assets/audio/crane_road/page1.mp3",
+      "text": "แนะนำปั้นจั่นน้อย สีเหลืองสด มีสายปั้นจั่นยาวๆ กำลังขับเล่นบนฟุตบาทอย่างสนุกสนานกับแม่รถเครนตัวใหญ่",
+      "chunks": ["แนะนำปั้นจั่นน้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "ปั้นจั่นน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" },
+        { "name": "แม่รถเครน", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "image": "assets/images/crane_road/page2.jpg",
+      "audio": "assets/audio/crane_road/page2.mp3",
+      "text": "ทันใดนั้น! ปั้นจั่นน้อยเหลือบไปเห็นกองทรายกองใหญ่มากอยู่อีกฝั่งของถนน อยากจะไปตักทรายเล่นจังเลย!",
+      "chunks": ["ทันใดนั้น"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "ปั้นจั่นน้อย", "x": 20, "y": 55, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "image": "assets/images/crane_road/page3.jpg",
+      "audio": "assets/audio/crane_road/page3.mp3",
+      "text": "ปั้นจั่นน้อยลืมตัว ปล่อยมือจากแม่รถเครน กำลังจะเร่งเครื่องวิ่งลงไปบนถนนเพื่อไปหากองทรายทันที",
+      "chunks": ["ปั้นจั่นน้อยลืมตัว"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "ปั้นจั่นน้อย", "x": 30, "y": 50, "width": 30, "height": 35, "animation": "shake", "sound": "rabbit_cry" }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "image": "assets/images/crane_road/page4.jpg",
+      "audio": "assets/audio/crane_road/page4.mp3",
+      "text": "แม่รถเครนหันมาเห็นรีบใช้สายปั้นจั่นยาวๆ เกี่ยวตัวปั้นจั่นน้อยไว้ ฟึ่บ! พร้อมกับมีรถสิบล้อคันยักษ์วิ่งผ่านหน้าไปอย่างรวดเร็ว เสียงดัง บรื๊นนน! เอี๊ยดดด!",
+      "chunks": ["แม่รถเครนหันมาเห็น"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเครน", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "ปั้นจั่นน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "image": "assets/images/crane_road/page5.jpg",
+      "audio": "assets/audio/crane_road/page5.mp3",
+      "text": "ปั้นจั่นน้อยตกใจตัวสั่น แม่รถเครนก้มลงมาสอน ปั้นจั่นน้อยจ๋า ถนนมีรถวิ่งเร็วมาก ก่อนจะข้ามถนนทุกครั้ง ต้องแปลงร่างเป็น ปั้นจั่นจอมล็อก เอาสายปั้นจั่นมาล็อกกับแม่แบบนี้เลย",
+      "chunks": ["ปั้นจั่นน้อยตกใจตัวสั่น"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเครน", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "ปั้นจั่นน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "image": "assets/images/crane_road/page6.jpg",
+      "audio": "assets/audio/crane_road/page6.mp3",
+      "text": "ปั้นจั่นน้อยพยักหน้า ยื่นสายปั้นจั่นน้อยๆ ไปเกี่ยวล็อกกับแม่รถเครนแน่น ทั้งคู่ช่วยกันมองขวา มองซ้าย มองขวาอีกที เมื่อเห็นว่ารถจอดสนิทแล้ว จึงค่อยๆ ข้ามทางม้าลายไปด้วยกัน",
+      "chunks": ["ปั้นจั่นน้อยพยักหน้า"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเครน", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "ปั้นจั่นน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "image": "assets/images/crane_road/page7.jpg",
+      "audio": "assets/audio/crane_road/page7.mp3",
+      "text": "ปั้นจั่นน้อยข้ามถึงอีกฝั่งอย่างปลอดภัย แม่รถเครนพาปั้นจั่นน้อยไปเล่นกองทรายแสนสนุก ปั้นจั่นน้อยสัญญากับแม่ว่า ต่อไปนี้ก่อนจะข้ามถนน หนูจะทำ ปั้นจั่นจอมล็อก กับแม่เสมอครับ/ค่ะ",
+      "chunks": ["ปั้นจั่นน้อยข้ามถึงอีกฝั่ง"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "แม่รถเครน", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "cheer" },
+        { "name": "ปั้นจั่นน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "applause" }
+      ]
+    }
+  ]
+}

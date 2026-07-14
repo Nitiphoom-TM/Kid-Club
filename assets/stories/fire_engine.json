@@ -1,0 +1,88 @@
+{
+  "storyId": "fire_engine",
+  "title": "รถดับเพลิงน้อยกับคุณปลั๊กไฟช็อตแป๊บ ๆ",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "image": "assets/images/fire_engine/page1.jpg",
+      "audio": "assets/audio/fire_engine/page1.mp3",
+      "text": "แนะนำรถดับเพลิงน้อย สีแดงแรงฤทธิ์ มีบันไดยาวอยู่ข้างหลัง วันนี้กำลังขับลาดตระเวนสำรวจความปลอดภัยรอบๆ บ้านอย่างแข็งขัน",
+      "chunks": ["แนะนำรถดับเพลิงน้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถดับเพลิงน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" },
+        { "name": "พ่อรถสิบล้อ", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "image": "assets/images/fire_engine/page2.jpg",
+      "audio": "assets/audio/fire_engine/page2.mp3",
+      "text": "ขับไปขับมา รถดับเพลิงน้อยหันไปเห็นคุณปลั๊กไฟที่ติดอยู่ตรงฝาผนังบ้าน เอ๊ะ... คุณปลั๊กไฟมีรูสีดำๆ สองรูเหมือนตาเลย น่าสนุกจัง!",
+      "chunks": ["ขับไปขับมา"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถดับเพลิงน้อย", "x": 20, "y": 55, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "image": "assets/images/fire_engine/page3.jpg",
+      "audio": "assets/audio/fire_engine/page3.mp3",
+      "text": "รถดับเพลิงน้อยหยิบเสาอากาศเหล็กเรียวยาวขึ้นมา กะว่าจะลองแหย่เข้าไปในรูของคุณปลั๊กไฟดูว่าซ่อนอะไรไว้ข้างใน",
+      "chunks": ["รถดับเพลิงน้อยหยิบเสาอากาศ"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถดับเพลิงน้อย", "x": 30, "y": 50, "width": 30, "height": 35, "animation": "shake", "sound": "rabbit_cry" }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "image": "assets/images/fire_engine/page4.jpg",
+      "audio": "assets/audio/fire_engine/page4.mp3",
+      "text": "พ่อรถสิบล้อคันใหญ่บีบแตรเสียงดังสนั่น แป๊นนนนน! จนรถดับเพลิงน้อยสะดุ้งโหยง เสาเหล็กหลุดมือ พ่อรีบเบรกเอี๊ยดขวางหน้าไว้ทันที",
+      "chunks": ["พ่อรถสิบล้อคันใหญ่บีบแตร"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "พ่อรถสิบล้อ", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถดับเพลิงน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "image": "assets/images/fire_engine/page5.jpg",
+      "audio": "assets/audio/fire_engine/page5.mp3",
+      "text": "พ่อรถสิบล้อก้มลงมาลูบหัวรถดับเพลิงน้อยแล้วชี้ให้ดูคุณปลั๊กไฟ รู้ไหมลูก ในตัวคุณปลั๊กไฟมี สัตว์ประหลาดสายฟ้า ซ่อนอยู่ ถ้าเราเอาอะไรไปแหย่รูตัวเขา เขาจะปล่อยไฟมาช็อตเราดัง จี๊ดๆๆ! เจ็บจนร้องไห้เลยนะ",
+      "chunks": ["พ่อรถสิบล้อก้มลงมาลูบหัว"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "พ่อรถสิบล้อ", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถดับเพลิงน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "image": "assets/images/fire_engine/page6.jpg",
+      "audio": "assets/audio/fire_engine/page6.mp3",
+      "text": "รถดับเพลิงน้อยตาโต สัญญาว่าจะไม่เข้าใกล้ พ่อจึงชวนทำข้อตกลง เรามาแปลงร่างเป็นผู้พิทักษ์ คอยเตือนคนอื่นไม่ให้จับคุณปลั๊กไฟกันดีกว่า รถดับเพลิงน้อยยิ้มรับ ถอยห่างจากปลั๊กไฟทันที",
+      "chunks": ["รถดับเพลิงน้อยตาโต"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "พ่อรถสิบล้อ", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถดับเพลิงน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "image": "assets/images/fire_engine/page7.jpg",
+      "audio": "assets/audio/fire_engine/page7.mp3",
+      "text": "รถดับเพลิงน้อยขับไปกอดคอพ่อรถสิบล้อ แล้วเปิดไซเรนหมุนติ้วๆ ร้อง หวอ...หวอ... อย่างมีความสุขที่วันนี้ปกป้องบ้านให้ปลอดภัยจากสายฟ้าได้สำเร็จ",
+      "chunks": ["รถดับเพลิงน้อยขับไปกอดคอ"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "พ่อรถสิบล้อ", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "cheer" },
+        { "name": "รถดับเพลิงน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "applause" }
+      ]
+    }
+  ]
+}

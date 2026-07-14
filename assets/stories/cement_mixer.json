@@ -1,0 +1,88 @@
+{
+  "storyId": "cement_mixer",
+  "title": "รถปูนน้อยพุงกาง...ชอบกินผักผลไม้",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "image": "assets/images/cement_mixer/page1.jpg",
+      "audio": "assets/audio/cement_mixer/page1.mp3",
+      "text": "แนะนำรถปูนน้อย สีชมพูหวานแว๋ว มีถังผสมปูนกลมๆ อยู่บนหลัง วันนี้ถึงเวลาหม่ำๆ มื้อเย็น คุณแม่ตักอาหารที่มีผักสีเขียวและผลไม้สีส้มให้กิน",
+      "chunks": ["แนะนำรถปูนน้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถปูนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" },
+        { "name": "คุณหมอรถพยาบาล", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "image": "assets/images/cement_mixer/page2.jpg",
+      "audio": "assets/audio/cement_mixer/page2.mp3",
+      "text": "รถปูนน้อยเบะปาก ร้องไห้โยเย แงๆ ไม่กินผัก เขียวๆ ไม่เอา! แล้วเอาแต่กินขนมกรุบกรอบ เมินหน้าหนีจานผักผลไม้จนหมดสิ้น",
+      "chunks": ["รถปูนน้อยเบะปาก ร้องไห้โยเย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถปูนน้อย", "x": 20, "y": 55, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "image": "assets/images/cement_mixer/page3.jpg",
+      "audio": "assets/audio/cement_mixer/page3.mp3",
+      "text": "เช้าวันต่อมา รถปูนน้อยเข้าห้องน้ำ ทันใดนั้นพุงก็เริ่มปวดอึ๊ ท้องผูกอย่างรุนแรง หน้าแดงก่ำ ตัวสั่น ล้อเกร็ง อึ๊ไม่ออก! ถังผสมปูนข้างหลังหมุนไม่ออกดัง แกร๊ก...แกร๊ก... เจ็บพุงจนน้ำตาไหล",
+      "chunks": ["เช้าวันต่อมา รถปูนน้อยเข้าห้องน้ำ"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถปูนน้อย", "x": 30, "y": 50, "width": 30, "height": 35, "animation": "shake", "sound": "rabbit_cry" }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "image": "assets/images/cement_mixer/page4.jpg",
+      "audio": "assets/audio/cement_mixer/page4.mp3",
+      "text": "คุณแม่รีบพารถปูนน้อยไปหาคุณหมอรถพยาบาล คุณหมอใช้หูฟังตรวจพุงที่ป่องฉี่ แล้วบอกว่า อ๋อ... เป็นเพราะในท้องไม่มีผักผลไม้มาช่วยส่งอึ๊ออกไป อึ๊เลยกลายเป็นก้อนหินแข็งเป๊กติดอยู่ในพุงน่ะสิ",
+      "chunks": ["คุณแม่รีบพารถปูนน้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "คุณหมอรถพยาบาล", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถปูนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "image": "assets/images/cement_mixer/page5.jpg",
+      "audio": "assets/audio/cement_mixer/page5.mp3",
+      "text": "รถปูนน้อยกลัวเจ็บอีก จึงยอมเชื่อฟัง กลับมาบ้านลองหม่ำคำแรก... เอ๊ะ ผักกรอบอร่อยหวานดีจัง! กินผลไม้สีส้มก็หวานฉ่ำ รถปูนน้อยเคี้ยวตุ้ยๆ กลืนลงพุงอย่างเอร็ดอร่อย",
+      "chunks": ["รถปูนน้อยกลัวเจ็บอีก"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "คุณหมอรถพยาบาล", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถปูนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "image": "assets/images/cement_mixer/page6.jpg",
+      "audio": "assets/audio/cement_mixer/page6.mp3",
+      "text": "วันรุ่งขึ้น รถปูนน้อยปวดท้องอึ๊อีกรอบ คราวนี้พอนั่งปุ๊บ อึ๊นิ่มๆ ก็หลุดพรวดออกมาอย่างง่ายดาย ฟลุ๊บ! สบายพุงสุดๆ ถังผสมปูนข้างหลังกลับมาหมุนติ้วๆ ได้ฉลุย",
+      "chunks": ["วันรุ่งขึ้น รถปูนน้อยปวดท้องอึ๊อีกรอบ"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "คุณหมอรถพยาบาล", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถปูนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "image": "assets/images/cement_mixer/page7.jpg",
+      "audio": "assets/audio/cement_mixer/page7.mp3",
+      "text": "รถปูนน้อยวิ่งเล่นชนผองเพื่อนรถตัวอื่นอย่างร่าเริง ร่างกายแข็งแรง ถังปูนเงางาม รถปูนน้อยตะโกนบอกทุกคนว่า หนูรักการกินผักที่สุดในโลกเลยคร้าบ/ค่ะ!",
+      "chunks": ["รถปูนน้อยวิ่งเล่นชนผองเพื่อน"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "คุณหมอรถพยาบาล", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "cheer" },
+        { "name": "รถปูนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "applause" }
+      ]
+    }
+  ]
+}

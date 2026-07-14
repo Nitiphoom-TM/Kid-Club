@@ -1,0 +1,88 @@
+{
+  "storyId": "road_roller",
+  "title": "รถบดถนนจอมเขมือบ",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "image": "assets/images/road_roller/page1.jpg",
+      "audio": "assets/audio/road_roller/page1.mp3",
+      "text": "แนะนำรถบดถนนน้อย สีส้มสดใส มีล้อหน้าเป็นลูกกลิ้งกลมๆ ลูกโต วันนี้รถบดถนนน้อยขับเล่นอยู่ในห้องนั่งเล่นกับคุณยายรถยก ท่าทางร่าเริง",
+      "chunks": ["แนะนำรถบดถนนน้อย"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถบดถนนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" },
+        { "name": "คุณยายรถยก", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "image": "assets/images/road_roller/page2.jpg",
+      "audio": "assets/audio/road_roller/page2.mp3",
+      "text": "รถบดถนนน้อยเหลือบไปเห็นกระดุมเม็ดกลมๆ สีแดง และเหรียญเงินวิบวับตกอยู่บนพื้น แหม... มันดูน่าอร่อยเหมือนลูกอมเลยแฮะ!",
+      "chunks": ["รถบดถนนน้อยเหลือบไปเห็น"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถบดถนนน้อย", "x": 20, "y": 55, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "image": "assets/images/road_roller/page3.jpg",
+      "audio": "assets/audio/road_roller/page3.mp3",
+      "text": "รถบดถนนน้อยอ้าปากกว้าง อ้ามมม... กำลังจะหยิบกระดุมและเหรียญชิ้นเล็กนั้นยัดเข้าปาก พยายามจะเอาใส่เข้าไปในท่อไอเสียจมูก",
+      "chunks": ["รถบดถนนน้อยอ้าปากกว้าง"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "รถบดถนนน้อย", "x": 30, "y": 50, "width": 30, "height": 35, "animation": "shake", "sound": "rabbit_cry" }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "image": "assets/images/road_roller/page4.jpg",
+      "audio": "assets/audio/road_roller/page4.mp3",
+      "text": "คุณยายรถยกหันมาเห็นร้องเสียงหลง อุ๊ย! ห้ามกินนะลูก! แล้วรีบใช้ตะขอรถยกเกี่ยวล้อรถบดถนนน้อยไว้ทันที ฟึ่บ! ของชิ้นเล็กหลุดมือตกพื้นดัง เคร้ง!",
+      "chunks": ["คุณยายรถยกหันมาเห็น"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "คุณยายรถยก", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถบดถนนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "image": "assets/images/road_roller/page5.jpg",
+      "audio": "assets/audio/road_roller/page5.mp3",
+      "text": "รถบดถนนน้อยตกใจ ตาโต คุณยายรถยกดึงเข้ามาใกล้ๆ แล้วสอนด้วยเสียงอบอุ่น ของชิ้นเล็กๆ แบบนี้ไม่ใช่ขนมนะลูก ถ้าเอาเข้าปากหรือแหย่เข้ารูจมูก มันจะไปอุดหลอดลม ทำให้หายใจไม่ออก อึดอัดเจ็บมากเลยนะ",
+      "chunks": ["รถบดถนนน้อยตกใจ ตาโต"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "คุณยายรถยก", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถบดถนนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "shake", "sound": "rabbit_gasp" }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "image": "assets/images/road_roller/page6.jpg",
+      "audio": "assets/audio/road_roller/page6.mp3",
+      "text": "รถบดถนนน้อยพยักหน้าเข้าใจ กางกระบะออกแล้วช่วยคุณยายเก็บกระดุมกับเหรียญเหล่านั้นไปให้คุณแม่เก็บไว้ในที่สูงๆ ที่ปลอดภัย ไม่เอาเข้าปากอีกแล้ว",
+      "chunks": ["รถบดถนนน้อยพยักหน้าเข้าใจ"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "คุณยายรถยก", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "tortoise_speak" },
+        { "name": "รถบดถนนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "rabbit_jump" }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "image": "assets/images/road_roller/page7.jpg",
+      "audio": "assets/audio/road_roller/page7.mp3",
+      "text": "คุณแม่รถเก๋งเดินเข้ามาจูบหน้าผากรถบดถนนน้อยฟอดใหญ่ แล้วให้รางวัลเป็น น้ำมันสตรอว์เบอร์รี่ แสนอร่อย รถบดถนนน้อยบอกว่า ต่อไปนี้หนูจะไม่กินของชิ้นเล็กบนพื้นอีกแล้วจ้า!",
+      "chunks": ["คุณแม่รถเก๋งเดินเข้ามาจูบ"],
+      "timings": [0.0],
+      "interactives": [
+        { "name": "คุณยายรถยก", "x": 10, "y": 20, "width": 45, "height": 70, "animation": "waddle", "sound": "cheer" },
+        { "name": "รถบดถนนน้อย", "x": 60, "y": 45, "width": 25, "height": 30, "animation": "bounce", "sound": "applause" }
+      ]
+    }
+  ]
+}
